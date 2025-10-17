@@ -1,9 +1,272 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>4-1 Semester — Subjects</title>
+
+  <!-- Bootstrap 4 CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+    crossorigin="anonymous" />
+
+  <style>
+    /* Global reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background: linear-gradient(135deg,#f0f8ff,#e6f7ff); min-height:100vh; padding-bottom:50px; }
+
+    /* ---------- NAVBAR ---------- */
+    .glass-navbar {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .navbar-brand { font-weight:700; color:#063642; letter-spacing:0.6px; }
+    .navbar .nav-link { color:#063642; font-weight:600; }
+    .navbar .nav-link:hover { color:#17a2b8; }
+    /* mobile collapsed menu background for readability */
+    @media (max-width: 991px) {
+      .navbar-collapse { background: rgba(255,255,255,0.95); padding: 0.8rem; border-radius: 8px; }
+      .navbar-nav .nav-link { padding: 0.5rem 0; }
+    }
+
+    /* Toggler custom icon color (makes the three lines dark) */
+    .navbar-toggler { border: none; }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(12,86,96,0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    /* ---------- CARDS & CONTENT ---------- */
+    .page-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin: 1.5rem auto;
+      padding: 1.5rem;
+      max-width: 1024px;
+      transition: transform .18s ease;
+    }
+    .page-card:hover { transform: translateY(-4px); }
+
+    .topic-label {
+      font-size: 1.6rem;
+      color: #17a2b8;
+      font-weight: 700;
+      margin-right: 1rem;
+      display:flex;
+      align-items:center;
+    }
+
+    /* Large topic buttons — responsive */
+    .topic-btn {
+      padding: 1.6rem 2.4rem;
+      font-size: 1.45rem;
+      font-weight:700;
+      border-radius: 10px;
+      white-space: nowrap;
+      background: linear-gradient(45deg,#00c9ff,#92fe9d);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .topic-btn:active { transform: translateY(1px); }
+    .topic-btn:hover { transform: translateY(-4px); }
+
+    /* Smaller screens: reduce the huge buttons */
+    @media (max-width: 576px) {
+      .topic-btn { padding: 1rem 1.2rem; font-size: 1.05rem; width: 100%; }
+      .topic-label { font-size: 1.2rem; margin-bottom: 0.5rem; }
+      .page-card { padding: 1rem; margin: 1rem; }
+    }
+
+    /* Subtopic btn style */
+    .sub-button {
+      display:block;
+      width:100%;
+      max-width: 520px;
+      margin: 0.5rem auto;
+      font-size: 1rem;
+      font-weight:600;
+      padding: 0.9rem;
+      border-radius:8px;
+      transition: transform .12s ease, background-color .12s ease;
+    }
+    .sub-button:hover { transform: translateX(6px); background-color:#0dcaf0; color:white; }
+
+    /* hide/show helpers */
+    .hidden { display:none !important; }
+    .visible-block { display:block !important; }
+
+    /* ensure clickable area for toggles */
+    .topic-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap: 12px; }
+
+    /* small helper to center the Home message a bit */
+    #homeSection { display:flex; justify-content:center; align-items:center; padding:2rem 1rem; }
+    
+    /* Container that restricts text movement */
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 2rem;
+}
+
+/* Text that will animate */
+.marquee-text {
+  position: absolute;
+  white-space: nowrap;
+  animation: scroll-left-right 4s ease-in-out infinite alternate;
+  font-size: 1.25rem;
+  left: 0;
+}
+
+@keyframes scroll-left-right {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+    transform: translateX(-100%);
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg glass-navbar">
+    <a class="navbar-brand" href="#">4-1 Semester</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+      <div class="navbar-nav">
+        <!-- Home is a simple '#' anchor; clicking it will show home content -->
+        <a class="nav-item nav-link active" href="#" id="navHome">Home</a>
+        <!-- Subjects uses #subjects but we intercept clicks via JS to show the topics area -->
+        <a class="nav-item nav-link" href="#subjects" id="navSubjects">Subjects</a>
+        <a class="nav-item nav-link" href="#quiz">Quiz</a>
+        <a class="nav-item nav-link" href="#materials">Materials</a>
+        <a class="nav-item nav-link" href="#questions">Questions</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-fluid">
+
+    <!-- HOME SECTION (default visible) -->
+    <section id="homeSection" class="page-card" aria-label="Home section">
+      <div style="width:100%; text-align:center;">
+        <div id="examMessage" class="alert alert-info text-center font-weight-bold" role="alert">
+  <div class="marquee-container">
+    <span class="marquee-text">🎓 All The Best for 4-1 Semester Exam! 📚</span>
+  </div>
+</div>
+
+        <!-- optionally add a short line or instruction -->
+        <p style="color:#065a5f; font-weight:600; margin-top:0.8rem;">Click <strong>Subjects</strong> in the navbar to open your subject units.</p>
+      </div>
+    </section>
+
+    <!-- TOPICS AREA (hidden by default) -->
+    <div id="topicsArea" class="hidden" aria-hidden="true">
+      <!-- SUBJECT 1 -->
+      <section id="topics" class="page-card" aria-label="Topics section">
+        <div class="d-flex flex-column">
+          <div class="topic-row w-100 mb-3">
+            <div class="topic-label">Subject-1 :</div>
+            <button class="topic-btn" aria-expanded="false" data-toggle-sub="#cc-subtopics">Cloud Computing</button>
+          </div>
+
+          <div id="cc-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-UNIT-01/">Unit - 01</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-02/">Unit - 02</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-03/">Unit - 03</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-04/">Unit - 04</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-05/">Unit - 05</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUBJECT 2 -->
+      <section class="page-card" aria-label="Topics list">
+        <div class="d-flex flex-column">
+          <div class="topic-row w-100 mb-3">
+            <div class="topic-label">Subject-2 :</div>
+            <button class="topic-btn" data-toggle-sub="#wns-subtopics" aria-expanded="false">Wireless Network Security</button>
+          </div>
+          <div id="wns-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-01/">Unit - 01</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-02/">Unit - 02</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-03/">Unit - 03</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-04/">Unit - 04</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-05/">Unit - 05</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUBJECT 3 -->
+      <section class="page-card">
+        <div class="d-flex flex-column">
+          <div class="topic-row w-100 mb-3">
+            <div class="topic-label">Subject-3 :</div>
+            <button class="topic-btn" data-toggle-sub="#sct-subtopics" aria-expanded="false">Secure Coding Techniques</button>
+          </div>
+          <div id="sct-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-01/">Unit - 01</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-02/">Unit - 02</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-03/">Unit - 03</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-04/">Unit - 04</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-05/">Unit - 05</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUBJECT 4 -->
+      <section class="page-card">
+        <div class="d-flex flex-column">
+          <div class="topic-row w-100 mb-3">
+            <div class="topic-label">Subject-4 :</div>
+            <button class="topic-btn" data-toggle-sub="#dlt-subtopics" aria-expanded="false">Deep Learning</button>
+          </div>
+          <div id="dlt-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-01/">Unit - 01</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-02/">Unit - 02</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-03/">Unit - 03</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-04/">Unit - 04</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-05/">Unit - 05</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUBJECT 5 -->
+      <section class="page-card">
+        <div class="d-flex flex-column">
+          <div class="topic-row w-100 mb-3">
+            <div class="topic-label">Subject-5 :</div>
+            <button class="topic-btn" data-toggle-sub="#apim-subtopics" aria-expanded="false">API & M</button>
+          </div>
+          <div id="apim-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-01/">Unit - 01</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-02/">Unit - 02</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-03/">Unit - 03</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-04/">Unit - 04</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-05/">Unit - 05</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Bootstrap JS + jQuery + Popper -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -13,125 +276,93 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="styles.css">
-</head>
 
-<body>
+  <script>
+    // ---------- JS: subtopic toggles ----------
+    document.addEventListener('DOMContentLoaded', function () {
+      // --- Keep existing toggle behavior for subject buttons ---
+      const toggles = document.querySelectorAll('[data-toggle-sub]');
 
-  <nav class="navbar navbar-expand-lg glass-navbar">
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      4-1 Semester
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      toggles.forEach(button => {
+        const subSel = button.getAttribute('data-toggle-sub');
+        if (!subSel) return;
+        const section = document.querySelector(subSel);
+        if (!section) return;
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home</a>
-        <a class="nav-item nav-link" href="#topics" id="clicktopics">subjects</a>
-        <a class="nav-item nav-link" href="#topics" id="clicktopics">Quiz</a>
-        <a class="nav-item nav-link" href="#topics" id="clicktopics">Materials</a>
-        <a class="nav-item nav-link" href="">Questions</a>
-      </div>
-    </div>
-  </nav>
+        // initialize aria-expanded to "false" if the section is hidden
+        const isHidden = section.classList.contains('hidden') || section.getAttribute('aria-hidden') === 'true';
+        button.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
 
+        button.addEventListener('click', () => {
+          const currentlyHidden = section.classList.contains('hidden');
+          if (currentlyHidden) {
+            // show
+            section.classList.remove('hidden');
+            section.classList.add('visible-block');
+            section.setAttribute('aria-hidden', 'false');
+            button.setAttribute('aria-expanded', 'true');
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            // hide
+            section.classList.remove('visible-block');
+            section.classList.add('hidden');
+            section.setAttribute('aria-hidden', 'true');
+            button.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
 
-  <div id="topics">
-    <div class="card">
-      <div id="algo-container" class="m-3">
-        <div class="d-flex flex-row justify-content-center">
-          <p class="topic-shift">Subject-1 :</p>
-          <div class="centering">
-            <button class="btn btn-info topic-size m-3" id="clickalgo">Cloud Computing</button>
-          </div>
-        </div>
-        <div id="algorithmtopics" class="sub-topic-shift d-none">
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/CC-UNIT-01/">Unit - 01</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/CC-Unit-02/">Unit - 02</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/CC-Unit-03/">Unit - 03</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/CC-Unit-04/">Unit - 04</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/CC-Unit-05/">Unit - 05</a><br />
-        </div>
-      </div>
-    </div>
+      // ---------- NEW: Home / Subjects visibility management ----------
+      const homeSection = document.getElementById('homeSection');
+      const topicsArea = document.getElementById('topicsArea');
+      const navHome = document.getElementById('navHome');
+      const navSubjects = document.getElementById('navSubjects');
 
-    <div class="card">
-      <div id="algo-container" class="m-3">
-        <div class="d-flex flex-row justify-content-center">
-          <p class="topic-shift">Subject-2 :</p>
-          <div class="centering">
-            <button class="btn btn-info topic-size m-3" id="clickwns">Wireless Network Security</button>
-          </div>
-        </div>
-        <div id="wnstopics" class="sub-topic-shift d-none">
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/WNS-Unit-01/">Unit - 01</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/WNS-Unit-02/">Unit - 02</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/WNS-Unit-03/">Unit - 03</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/WNS-Unit-04/">Unit - 04</a><br />
-          <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/WNS-Unit-05/">Unit - 05</a><br />
-        </div>
-      </div>
-    </div>
+      // Helper functions
+      function showHome() {
+        homeSection.classList.remove('hidden');
+        homeSection.classList.add('visible-block');
+        topicsArea.classList.remove('visible-block');
+        topicsArea.classList.add('hidden');
+        topicsArea.setAttribute('aria-hidden', 'true');
+        // update active link styles (simple)
+        navHome.classList.add('active');
+        navSubjects.classList.remove('active');
+        // scroll to top so home message is visible
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
 
-    <div class="card">
-      <div class="d-flex flex-row justify-content-center m-3">
-        <p class="topic-shift">Subject-3 : </p>
-        <div id="topics" class="centering">
-          <button class="btn btn-info topic-size" href="#DStopics" id="clickds">Secure Coding Techniques</button>
-        </div>
-      </div>
-      <div id="DStopics" class="sub-topic-shift">
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/SCT-Unit-01/">Unit - 01</a>
-        <br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/SCT-Unit-02/">Unit - 02</a>
-        <br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/SCT-Unit-03/">Unit - 03</a>
-        <br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/SCT-Unit-04/">Unit - 04</a>
-        <br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/SCT-Unit-05/">Unit - 05</a>
-        <br />
-      </div>
-    </div>
+      function showTopics() {
+        topicsArea.classList.remove('hidden');
+        topicsArea.classList.add('visible-block');
+        topicsArea.setAttribute('aria-hidden', 'false');
+        homeSection.classList.remove('visible-block');
+        homeSection.classList.add('hidden');
+        navSubjects.classList.add('active');
+        navHome.classList.remove('active');
+        // scroll to topics area
+        topicsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
 
+      // On initial load, show Home (and hide topics)
+      showHome();
 
-    <div class="card">
-      <div class="d-flex flex-row justify-content-center m-3">
-        <p class="topic-shift">Subject-4 : </p>
-        <div class="centering">
-          <button class="btn btn-info topic-size" id="clickprobability">Deep Learning</button>
-        </div>
-      </div>
-      <div id="probabilitytopics" class="sub-topic-shift d-none">
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/DLT-Unit-01/">Unit - 01</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/DLT-Unit-02/">Unit - 02</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/DLT-Unit-03/">Unit - 03</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/DLT-Unit-04/">Unit - 04</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/DLT-Unit-05/">Unit - 05</a><br />
-      </div>
-    </div>
-    <div class="card">
-      <div class="d-flex flex-row justify-content-center m-3">
-        <p class="topic-shift">Subject-5 : </p>
-        <div class="centering">
-          <button class="btn btn-info topic-size" id="clicklinear">API & M</button>
-        </div>
-      </div>
-      <div id="lineartopics" class="sub-topic-shift d-none">
-                <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/APIM-Unit-01/">Unit - 01</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/APIM-Unit-02/">Unit - 02</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/APIM-Unit-03/">Unit - 03</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/APIM-Unit-04/">Unit - 04</a><br />
-        <a class="btn btn-secondary sub-button m3" href="https://shyam044.github.io/APIM-Unit-05/">Unit - 05</a><br />
-      </div>
+      // Click handlers for nav links (Home and Subjects)
+      navHome.addEventListener('click', function (e) {
+        e.preventDefault();
+        showHome();
+      });
 
-    </div>
+      navSubjects.addEventListener('click', function (e) {
+        e.preventDefault();
+        showTopics();
+      });
 
-    <script src="script.js"></script>
+      // Optional: if user visits with a hash in the URL (like #subjects), show topics
+      if (location.hash === '#subjects') {
+        showTopics();
+      }
+    });
+  </script>
 </body>
-
-
 </html>
