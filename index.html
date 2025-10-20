@@ -540,17 +540,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // support opening from URL hash
-  // support opening from URL hash
-  if (location.hash === '#subjects') {
-    showSection(topicsArea, navSubjects);
-  } else if (location.hash === '#materials') {
-    showSection(materialsArea, navMaterials);
-  } else if (location.hash === '#syllabus') {
-    showSection(syllabusArea, navSyllabus);
-  } else {
-    showSection(homeSection, navHome);
-  }
-    // support opening from URL hash
   const hash = window.location.hash;
 
   switch (hash) {
@@ -567,8 +556,46 @@ document.addEventListener('DOMContentLoaded', function () {
       showSection(homeSection, navHome);
   }
 
+  // --- NEW: auto-open navbar on mobile (<= 991px) and keep behavior on resize ---
+  // Uses Bootstrap's collapse API (requires bootstrap + jQuery, which you already include).
+  const $navCollapse = $('#navbarContent');
+  const $toggler = $('.navbar-toggler');
 
-});
+  function updateNavbarForWidth() {
+    if (window.innerWidth <= 991) {
+      // Open the collapsed menu on mobile
+      if (!$navCollapse.hasClass('show')) {
+        $navCollapse.collapse('show');            // bootstrap collapse API
+        $toggler.attr('aria-expanded', 'true');   // accessibility state
+      }
+    } else {
+      // Ensure it's collapsed on larger screens
+      if ($navCollapse.hasClass('show')) {
+        $navCollapse.collapse('hide');
+        $toggler.attr('aria-expanded', 'false');
+      }
+    }
+  }
+
+  // Run on load
+  updateNavbarForWidth();
+
+  // Re-evaluate on resize (debounced small delay to avoid thrash)
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateNavbarForWidth, 120);
+  });
+
+  // When a nav link is clicked on mobile, collapse so user can see the selected section
+  $('#navbarContent .nav-link').on('click', function () {
+    if (window.innerWidth <= 991) {
+      $navCollapse.collapse('hide');
+      $toggler.attr('aria-expanded', 'false');
+    }
+  });
+
+}); // end DOMContentLoaded
 
 // keep this helper global if you call it from onclick attributes
 function showUnitContent(unitId) {
@@ -582,6 +609,7 @@ function showUnitContent(unitId) {
   }
 }
 </script>
+
 </body>
 </html>
 
