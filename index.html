@@ -551,18 +551,6 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
     showSection(syllabusArea, navSyllabus);
   });
-
-  // support opening from URL hash
-  // support opening from URL hash
-  if (location.hash === '#subjects') {
-    showSection(topicsArea, navSubjects);
-  } else if (location.hash === '#materials') {
-    showSection(materialsArea, navMaterials);
-  } else if (location.hash === '#syllabus') {
-    showSection(syllabusArea, navSyllabus);
-  } else {
-    showSection(homeSection, navHome);
-  }
 });
 
 // keep this helper global if you call it from onclick attributes
