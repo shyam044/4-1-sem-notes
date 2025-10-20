@@ -550,6 +550,23 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     showSection(homeSection, navHome);
   }
+    // support opening from URL hash
+  const hash = window.location.hash;
+
+  switch (hash) {
+    case '#subjects':
+      showSection(topicsArea, navSubjects);
+      break;
+    case '#materials':
+      showSection(materialsArea, navMaterials);
+      break;
+    case '#syllabus':
+      showSection(syllabusArea, navSyllabus);
+      break;
+    default:
+      showSection(homeSection, navHome);
+  }
+
 
 });
 
@@ -567,6 +584,7 @@ function showUnitContent(unitId) {
 </script>
 </body>
 </html>
+
 
 
 
