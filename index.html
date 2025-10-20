@@ -4,17 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>4-1 Semester — Subjects</title>
-
   <!-- Bootstrap 4 CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
     crossorigin="anonymous" />
-
   <style>
     /* Global reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
     body { background: linear-gradient(135deg,#f0f8ff,#e6f7ff); min-height:100vh; padding-bottom:50px; }
-
     /* ---------- NAVBAR ---------- */
     .glass-navbar {
       background: rgba(255,255,255,0.15);
@@ -133,18 +130,6 @@
     transform: translateX(-100%);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 /* ------- MATERIALS SECTION -------- */
 .material-block {
   background-color: #f7fbfd;
@@ -192,6 +177,13 @@
     text-align: center;
   }
 }
+.unit-content {
+  margin-top: 1rem;
+  background: #e6f4f8;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #bde0eb;
+}
 
 
   </style>
@@ -211,6 +203,7 @@
         <!-- Home is a simple '#' anchor; clicking it will show home content -->
         <a class="nav-item nav-link active" href="#" id="navHome">Home</a>
         <!-- Subjects uses #subjects but we intercept clicks via JS to show the topics area -->
+        <a class="nav-item nav-link" href="#syllabus">Syllabus</a>
         <a class="nav-item nav-link" href="#subjects" id="navSubjects">Subjects</a>
         <a class="nav-item nav-link" href="#quiz">Quiz</a>
         <a class="nav-item nav-link" href="#materials">Materials</a>
@@ -338,18 +331,18 @@
         <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
         <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
         <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        <a href="https://drive.google.com/file/d/1uM6xNJr8Pg0sEsV1d1uZdzQJVPuOhv7P/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
       </div>
     </div>
 
         <div class="material-block">
       <h5 class="material-title">Wireless Network Security</h5>
       <div class="material-links">
-        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        <a href="https://drive.google.com/file/d/1U1bmupMiY82Pl7lC551aTj2ByU_0Scfy/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1tQr5epSyWAti0akvyptuV7--BewbK7OV/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/1nxG734yHlRVjSxT53i8Glw2hwujx91xF/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1lD_dqw4HeYOrMcwf5-pwdRHe_kSO72Ag/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="https://drive.google.com/file/d/1wQpkPHsTy2_dWoLxOQ4OJWydu3rn8Drj/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
       </div>
     </div>
 
@@ -368,11 +361,11 @@
         <div class="material-block">
       <h5 class="material-title">Deep Learning Techniques</h5>
       <div class="material-links">
-        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        <a href="https://drive.google.com/file/d/1K_2O21d07xCeGf7iIg5qnqTig1s3Qmsm/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1VJLqJcMN78XA1PBiynfjgpri4Ba1g4dx/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/1S1D9MfJjXnWs6lBEUKR6AV6x7rj8cGJy/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1Oiu1BlHzkWn-l9wEKOf-UckZmbXrtMGw/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="https://drive.google.com/file/d/1wmJqPMJxsArxpWzre0Fj_WcMZmJmROPM/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
       </div>
     </div>
 
@@ -392,19 +385,57 @@
         <div class="material-block">
       <h5 class="material-title">Universal Human Values</h5>
       <div class="material-links">
-        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        <a href="https://drive.google.com/file/d/1_ab49NJsbmppjbxtQyzu_kQPDTP9eyA_/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1C1BQZS-VY2eGNhOsQwH0Vnk3JMeHf1j6/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/10QEvV3A_EM-RY1W-J-MA1ktfS6c2Tv9c/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1POqsInhy2VhTjDKEPh-cSpg7UQK9lJQG/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="https://drive.google.com/file/d/1gJeAs2ZxQg6WsCfZots5sx0i3VNfYaL7/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
       </div>
     </div>
-
-
-
     <!-- You can duplicate this block for each subject -->
   </section>
+
+  <!-- SYLLABUS AREA (hidden by default) -->
 </div>
+<!-- SYLLABUS AREA (hidden by default) -->
+<div id="syllabusArea" class="hidden" aria-hidden="true">
+  <section class="page-card" aria-label="Syllabus section">
+    <h3 class="text-center mb-4" style="color: #0a5f74;">📚 Syllabus</h3>
+
+    <div class="material-block">
+      <h5 class="material-title">Cloud Computing — Units</h5>
+      <div class="material-links">
+        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit1')">Unit 01</button>
+        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit2')">Unit 02</button>
+        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit3')">Unit 03</button>
+        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit4')">Unit 04</button>
+        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit5')">Unit 05</button>
+      </div>
+
+      <!-- Unit Content Blocks -->
+      <div id="cc-unit1" class="unit-content hidden">
+        <p><strong>UNIT I:</strong> Systems Modeling, Clustering and Virtualization: Scalable Computing over the Internet — The Age of Internet Computing, Scalable computing over the internet, Technologies for Network Based Systems, System models for Distributed and Cloud Computing, Performance, Security and Energy Efficiency.</p>
+      </div>
+
+      <div id="cc-unit2" class="unit-content hidden">
+        <p><strong>UNIT II:</strong> Virtual Machines and Virtualization of Clusters and Data Centers: Implementation Levels of Virtualization, Virtualization Structures/ Tools and Mechanisms, Virtualization of CPU, Memory and I/O Devices, Virtual Clusters and Resource Management, Virtualization for Data-Center Automation.</p>
+      </div>
+
+      <div id="cc-unit3" class="unit-content hidden">
+        <p><strong>UNIT III:</strong> Cloud Platform Architecture: Cloud Computing and Service Models, Public Cloud Platforms, Service Oriented Architecture, Programming on Amazon AWS and Microsoft Azure.</p>
+      </div>
+
+      <div id="cc-unit4" class="unit-content hidden">
+        <p><strong>UNIT IV:</strong> Cloud Resource Management and Scheduling: Policies and Mechanisms for Resource Management, Applications of Control Theory to Task Scheduling on a Cloud, Stability of a Two Level Resource Allocation Architecture, Feedback Control Based on Dynamic Thresholds, Coordination of Specialized Autonomic Performance Managers, Resource Bundling, Scheduling Algorithms for Computing Clouds — Fair Queuing, Start Time Fair Queuing.</p>
+      </div>
+
+      <div id="cc-unit5" class="unit-content hidden">
+        <p><strong>UNIT V:</strong> Storage Systems: Evolution of storage technology, storage models, file systems and database, distributed file systems, general parallel file systems, Google file system.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
 
 
   <!-- Bootstrap JS + jQuery + Popper -->
@@ -420,24 +451,27 @@
 
   <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Elements
+  // main sections (may be null if not present)
   const homeSection = document.getElementById('homeSection');
   const topicsArea = document.getElementById('topicsArea');
   const materialsArea = document.getElementById('materialsArea');
+  const syllabusArea = document.getElementById('syllabusArea'); // <--- now present in DOM
 
+  // nav items
   const navHome = document.getElementById('navHome');
   const navSubjects = document.getElementById('navSubjects');
   const navMaterials = document.querySelector('[href="#materials"]');
+  const navSyllabus = document.querySelector('[href="#syllabus"]');
 
-  // Subject toggle buttons (existing behavior)
+  // Subject toggle buttons (expand/collapse subtopics)
   const toggles = document.querySelectorAll('[data-toggle-sub]');
   toggles.forEach(button => {
     const subSel = button.getAttribute('data-toggle-sub');
     if (!subSel) return;
     const section = document.querySelector(subSel);
     if (!section) return;
-    const isHidden = section.classList.contains('hidden') || section.getAttribute('aria-hidden') === 'true';
-    button.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+    button.setAttribute('aria-expanded', section.classList.contains('hidden') ? 'false' : 'true');
+
     button.addEventListener('click', () => {
       const currentlyHidden = section.classList.contains('hidden');
       if (currentlyHidden) {
@@ -455,20 +489,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Helper that hides all main areas and shows the one you want
+  // utility: hide all main sections that exist
   function hideAllMain() {
-    [homeSection, topicsArea, materialsArea].forEach(sec => {
+    [homeSection, topicsArea, materialsArea, syllabusArea].forEach(sec => {
       if (!sec) return;
       sec.classList.remove('visible-block');
       sec.classList.add('hidden');
       sec.setAttribute('aria-hidden', 'true');
     });
-    // clear active links (safely)
-    [navHome, navSubjects, navMaterials].forEach(nav => {
+
+    // remove 'active' from nav links if they exist
+    [navHome, navSubjects, navMaterials, navSyllabus].forEach(nav => {
       if (nav) nav.classList.remove('active');
     });
   }
 
+  // utility: show a given section and mark corresponding nav active
   function showSection(sectionEl, navEl) {
     hideAllMain();
     if (!sectionEl) return;
@@ -479,33 +515,55 @@ document.addEventListener('DOMContentLoaded', function () {
     sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Initial view
+  // initial view
   showSection(homeSection, navHome);
 
-  // Nav handlers (one per main nav item)
-  navHome.addEventListener('click', function (e) {
+  // nav click handlers (guard existence)
+  if (navHome) navHome.addEventListener('click', function (e) {
     e.preventDefault();
     showSection(homeSection, navHome);
   });
 
-  navSubjects.addEventListener('click', function (e) {
+  if (navSubjects) navSubjects.addEventListener('click', function (e) {
     e.preventDefault();
     showSection(topicsArea, navSubjects);
   });
 
-  navMaterials.addEventListener('click', function (e) {
+  if (navMaterials) navMaterials.addEventListener('click', function (e) {
     e.preventDefault();
     showSection(materialsArea, navMaterials);
   });
 
-  // If URL has #subjects on load, open it
+  if (navSyllabus) navSyllabus.addEventListener('click', function (e) {
+    e.preventDefault();
+    showSection(syllabusArea, navSyllabus);
+  });
+
+  // support opening from URL hash
   if (location.hash === '#subjects') {
     showSection(topicsArea, navSubjects);
+  } else if (location.hash === '#syllabus') {
+    showSection(syllabusArea, navSyllabus);
+  } else if (location.hash === '#materials') {
+    showSection(materialsArea, navMaterials);
   }
 });
-</script>
 
+// keep this helper global if you call it from onclick attributes
+function showUnitContent(unitId) {
+  const allUnits = document.querySelectorAll('.unit-content');
+  allUnits.forEach(unit => unit.classList.add('hidden'));
+
+  const target = document.getElementById(unitId);
+  if (target) {
+    target.classList.remove('hidden');
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+</script>
 </body>
 </html>
+
+
 
 
