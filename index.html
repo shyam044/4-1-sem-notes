@@ -134,6 +134,66 @@
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/* ------- MATERIALS SECTION -------- */
+.material-block {
+  background-color: #f7fbfd;
+  border: 1px solid #d9edf7;
+  border-left: 6px solid #17a2b8;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.material-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #0a5f74;
+}
+
+.material-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.material-btn {
+  padding: 0.6rem 1.1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: transform 0.1s ease;
+}
+
+.material-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile friendly tweaks */
+@media (max-width: 576px) {
+  .material-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .material-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
   </style>
 </head>
 
@@ -265,6 +325,87 @@
     </div>
 
   </main>
+  <!-- MATERIALS AREA (hidden by default) -->
+<div id="materialsArea" class="hidden" aria-hidden="true">
+  <section class="page-card" aria-label="Materials section">
+    <h3 class="text-center mb-4" style="color: #0a5f74;">📘 Study Materials</h3>
+
+    <!-- Sample Subject Block: Cloud Computing -->
+    <div class="material-block">
+      <h5 class="material-title">Cloud Computing</h5>
+      <div class="material-links">
+        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      </div>
+    </div>
+
+        <div class="material-block">
+      <h5 class="material-title">Wireless Network Security</h5>
+      <div class="material-links">
+        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      </div>
+    </div>
+
+        <div class="material-block">
+      <h5 class="material-title">Secure Coding Techniques</h5>
+      <div class="material-links">
+        <a href="https://docs.google.com/document/d/1smKIA6kM1rlnDg02juVbbyMghJ-kGdCE" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://docs.google.com/document/d/1rx59kv8rbEf0gSaLVquWuOen1YWb62rx" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://docs.google.com/document/d/1IMyqpFr5Yq44A6we6Jn7V_p2cVvM183d" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://docs.google.com/document/d/1EhMH1AxQUqa6F2Zw1wjD8HOchzF0N71z" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="https://docs.google.com/document/d/1LHZYApRgHWf8lqAGwZ4QX2jncB0bMjlf" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      </div>
+    </div>
+
+
+        <div class="material-block">
+      <h5 class="material-title">Deep Learning Techniques</h5>
+      <div class="material-links">
+        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      </div>
+    </div>
+
+
+
+        <div class="material-block">
+      <h5 class="material-title">API & M</h5>
+      <div class="material-links">
+        <a href="https://drive.google.com/file/d/127-De7MgzhTLrmJzMy7O19A7Nlqu62sv/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1-QMAFTBfjdzWTKJ0LpGGEHLo9h9W0ZYE/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/1EQDXXFQSd8VJRQ1050Ww_I6XLRkCc9NQ/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1PK7Xa77mZY1PcJ5ihS897mmRDGbQVQGw/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="https://drive.google.com/file/d/1SioPT_3tZHsW93zufhy9CWdRsn2y0WWD/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      </div>
+    </div>
+
+        <div class="material-block">
+      <h5 class="material-title">Universal Human Values</h5>
+      <div class="material-links">
+        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+        <a href="PDF_LINK_UNIT_5" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      </div>
+    </div>
+
+
+
+    <!-- You can duplicate this block for each subject -->
+  </section>
+</div>
+
 
   <!-- Bootstrap JS + jQuery + Popper -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -278,91 +419,93 @@
     crossorigin="anonymous"></script>
 
   <script>
-    // ---------- JS: subtopic toggles ----------
-    document.addEventListener('DOMContentLoaded', function () {
-      // --- Keep existing toggle behavior for subject buttons ---
-      const toggles = document.querySelectorAll('[data-toggle-sub]');
+document.addEventListener('DOMContentLoaded', function () {
+  // Elements
+  const homeSection = document.getElementById('homeSection');
+  const topicsArea = document.getElementById('topicsArea');
+  const materialsArea = document.getElementById('materialsArea');
 
-      toggles.forEach(button => {
-        const subSel = button.getAttribute('data-toggle-sub');
-        if (!subSel) return;
-        const section = document.querySelector(subSel);
-        if (!section) return;
+  const navHome = document.getElementById('navHome');
+  const navSubjects = document.getElementById('navSubjects');
+  const navMaterials = document.querySelector('[href="#materials"]');
 
-        // initialize aria-expanded to "false" if the section is hidden
-        const isHidden = section.classList.contains('hidden') || section.getAttribute('aria-hidden') === 'true';
-        button.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
-
-        button.addEventListener('click', () => {
-          const currentlyHidden = section.classList.contains('hidden');
-          if (currentlyHidden) {
-            // show
-            section.classList.remove('hidden');
-            section.classList.add('visible-block');
-            section.setAttribute('aria-hidden', 'false');
-            button.setAttribute('aria-expanded', 'true');
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          } else {
-            // hide
-            section.classList.remove('visible-block');
-            section.classList.add('hidden');
-            section.setAttribute('aria-hidden', 'true');
-            button.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-
-      // ---------- NEW: Home / Subjects visibility management ----------
-      const homeSection = document.getElementById('homeSection');
-      const topicsArea = document.getElementById('topicsArea');
-      const navHome = document.getElementById('navHome');
-      const navSubjects = document.getElementById('navSubjects');
-
-      // Helper functions
-      function showHome() {
-        homeSection.classList.remove('hidden');
-        homeSection.classList.add('visible-block');
-        topicsArea.classList.remove('visible-block');
-        topicsArea.classList.add('hidden');
-        topicsArea.setAttribute('aria-hidden', 'true');
-        // update active link styles (simple)
-        navHome.classList.add('active');
-        navSubjects.classList.remove('active');
-        // scroll to top so home message is visible
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      function showTopics() {
-        topicsArea.classList.remove('hidden');
-        topicsArea.classList.add('visible-block');
-        topicsArea.setAttribute('aria-hidden', 'false');
-        homeSection.classList.remove('visible-block');
-        homeSection.classList.add('hidden');
-        navSubjects.classList.add('active');
-        navHome.classList.remove('active');
-        // scroll to topics area
-        topicsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-
-      // On initial load, show Home (and hide topics)
-      showHome();
-
-      // Click handlers for nav links (Home and Subjects)
-      navHome.addEventListener('click', function (e) {
-        e.preventDefault();
-        showHome();
-      });
-
-      navSubjects.addEventListener('click', function (e) {
-        e.preventDefault();
-        showTopics();
-      });
-
-      // Optional: if user visits with a hash in the URL (like #subjects), show topics
-      if (location.hash === '#subjects') {
-        showTopics();
+  // Subject toggle buttons (existing behavior)
+  const toggles = document.querySelectorAll('[data-toggle-sub]');
+  toggles.forEach(button => {
+    const subSel = button.getAttribute('data-toggle-sub');
+    if (!subSel) return;
+    const section = document.querySelector(subSel);
+    if (!section) return;
+    const isHidden = section.classList.contains('hidden') || section.getAttribute('aria-hidden') === 'true';
+    button.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+    button.addEventListener('click', () => {
+      const currentlyHidden = section.classList.contains('hidden');
+      if (currentlyHidden) {
+        section.classList.remove('hidden');
+        section.classList.add('visible-block');
+        section.setAttribute('aria-hidden', 'false');
+        button.setAttribute('aria-expanded', 'true');
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        section.classList.remove('visible-block');
+        section.classList.add('hidden');
+        section.setAttribute('aria-hidden', 'true');
+        button.setAttribute('aria-expanded', 'false');
       }
     });
-  </script>
+  });
+
+  // Helper that hides all main areas and shows the one you want
+  function hideAllMain() {
+    [homeSection, topicsArea, materialsArea].forEach(sec => {
+      if (!sec) return;
+      sec.classList.remove('visible-block');
+      sec.classList.add('hidden');
+      sec.setAttribute('aria-hidden', 'true');
+    });
+    // clear active links (safely)
+    [navHome, navSubjects, navMaterials].forEach(nav => {
+      if (nav) nav.classList.remove('active');
+    });
+  }
+
+  function showSection(sectionEl, navEl) {
+    hideAllMain();
+    if (!sectionEl) return;
+    sectionEl.classList.remove('hidden');
+    sectionEl.classList.add('visible-block');
+    sectionEl.setAttribute('aria-hidden', 'false');
+    if (navEl) navEl.classList.add('active');
+    sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Initial view
+  showSection(homeSection, navHome);
+
+  // Nav handlers (one per main nav item)
+  navHome.addEventListener('click', function (e) {
+    e.preventDefault();
+    showSection(homeSection, navHome);
+  });
+
+  navSubjects.addEventListener('click', function (e) {
+    e.preventDefault();
+    showSection(topicsArea, navSubjects);
+  });
+
+  navMaterials.addEventListener('click', function (e) {
+    e.preventDefault();
+    showSection(materialsArea, navMaterials);
+  });
+
+  // If URL has #subjects on load, open it
+  if (location.hash === '#subjects') {
+    showSection(topicsArea, navSubjects);
+  }
+});
+</script>
+
 </body>
 </html>
+
+
