@@ -21,19 +21,6 @@
       padding: 0.5rem 1rem;
       border-radius: 0 0 12px 12px;
     }
-    /* keep navbar fixed at top so user doesn't need to drag/scroll */
-.glass-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1030; /* above page content */
-}
-
-/* add page top padding equal to navbar height so content doesn't hide under it */
-body {
-  padding-top: 72px; /* adjust if your navbar height differs */
-}
 
     .navbar-brand { font-weight:700; color:#063642; letter-spacing:0.6px; }
     .navbar .nav-link { color:#063642; font-weight:600; }
@@ -551,6 +538,19 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
     showSection(syllabusArea, navSyllabus);
   });
+
+  // support opening from URL hash
+  // support opening from URL hash
+  if (location.hash === '#subjects') {
+    showSection(topicsArea, navSubjects);
+  } else if (location.hash === '#materials') {
+    showSection(materialsArea, navMaterials);
+  } else if (location.hash === '#syllabus') {
+    showSection(syllabusArea, navSyllabus);
+  } else {
+    showSection(homeSection, navHome);
+  }
+
 });
 
 // keep this helper global if you call it from onclick attributes
@@ -565,21 +565,9 @@ function showUnitContent(unitId) {
   }
 }
 </script>
-<script>
-  function showUnitContent(unitId) {
-    // Hide all unit content blocks first
-    const allUnits = document.querySelectorAll('.unit-content');
-    allUnits.forEach(el => el.classList.add('hidden'));
-
-    // Show selected unit
-    const unitEl = document.getElementById(unitId);
-    if (unitEl) unitEl.classList.remove('hidden');
-  }
-</script>
-<script src="https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
-<script>smoothscroll.polyfill();</script>
 </body>
 </html>
+
 
 
 
