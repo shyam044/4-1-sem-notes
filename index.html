@@ -577,31 +577,10 @@ function showUnitContent(unitId) {
   }
 }
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  // if viewport is small (match bootstrap's collapsed breakpoint for navbar-expand-lg)
-  if (window.innerWidth < 992) {
-    const navCollapse = document.querySelector('.navbar-collapse');
-    const toggler = document.querySelector('.navbar-toggler');
-
-    if (navCollapse && !navCollapse.classList.contains('show')) {
-      navCollapse.classList.add('show');
-      navCollapse.setAttribute('aria-hidden', 'false');
-    }
-    if (toggler) toggler.setAttribute('aria-expanded', 'true');
-
-    // ensure body padding accounts for navbar height dynamically
-    const navbar = document.querySelector('.glass-navbar');
-    if (navbar) {
-      const h = navbar.getBoundingClientRect().height;
-      document.body.style.paddingTop = `${h}px`;
-    }
-  }
-});
-</script>
 
 </body>
 </html>
+
 
 
 
