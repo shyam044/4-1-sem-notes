@@ -1,38 +1,71 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>4-1 Semester — Subjects</title>
   <!-- Bootstrap 4 CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-    crossorigin="anonymous" />
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
   <style>
     /* Global reset & base */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-    body { background: linear-gradient(135deg,#f0f8ff,#e6f7ff); min-height:100vh; padding-bottom:50px; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+      min-height: 100vh;
+      padding-bottom: 50px;
+    }
+
     /* ---------- NAVBAR ---------- */
     .glass-navbar {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.25);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
       padding: 0.5rem 1rem;
       border-radius: 0 0 12px 12px;
     }
 
-    .navbar-brand { font-weight:700; color:#063642; letter-spacing:0.6px; }
-    .navbar .nav-link { color:#063642; font-weight:600; }
-    .navbar .nav-link:hover { color:#17a2b8; }
+    .navbar-brand {
+      font-weight: 700;
+      color: #063642;
+      letter-spacing: 0.6px;
+    }
+
+    .navbar .nav-link {
+      color: #063642;
+      font-weight: 600;
+    }
+
+    .navbar .nav-link:hover {
+      color: #17a2b8;
+    }
+
     /* mobile collapsed menu background for readability */
     @media (max-width: 991px) {
-      .navbar-collapse { background: rgba(255,255,255,0.95); padding: 0.8rem; border-radius: 8px; }
-      .navbar-nav .nav-link { padding: 0.5rem 0; }
+      .navbar-collapse {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 0.8rem;
+        border-radius: 8px;
+      }
+
+      .navbar-nav .nav-link {
+        padding: 0.5rem 0;
+      }
     }
 
     /* Toggler custom icon color (makes the three lines dark) */
-    .navbar-toggler { border: none; }
+    .navbar-toggler {
+      border: none;
+    }
+
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(12,86,96,0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
@@ -41,150 +74,264 @@
     .page-card {
       background-color: #fff;
       border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
       margin: 1.5rem auto;
       padding: 1.5rem;
       max-width: 1024px;
       transition: transform .18s ease;
     }
-    .page-card:hover { transform: translateY(-4px); }
+
+    .page-card:hover {
+      transform: translateY(-4px);
+    }
 
     .topic-label {
       font-size: 1.6rem;
       color: #17a2b8;
       font-weight: 700;
       margin-right: 1rem;
-      display:flex;
-      align-items:center;
+      display: flex;
+      align-items: center;
     }
 
     /* Large topic buttons — responsive */
     .topic-btn {
       padding: 1.6rem 2.4rem;
       font-size: 1.45rem;
-      font-weight:700;
+      font-weight: 700;
       border-radius: 10px;
       white-space: nowrap;
-      background: linear-gradient(45deg,#00c9ff,#92fe9d);
+      background: linear-gradient(45deg, #00c9ff, #92fe9d);
       color: #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
       transition: transform .15s ease, box-shadow .15s ease;
     }
-    .topic-btn:active { transform: translateY(1px); }
-    .topic-btn:hover { transform: translateY(-4px); }
+
+    .topic-btn:active {
+      transform: translateY(1px);
+    }
+
+    .topic-btn:hover {
+      transform: translateY(-4px);
+    }
 
     /* Smaller screens: reduce the huge buttons */
     @media (max-width: 576px) {
-      .topic-btn { padding: 1rem 1.2rem; font-size: 1.05rem; width: 100%; }
-      .topic-label { font-size: 1.2rem; margin-bottom: 0.5rem; }
-      .page-card { padding: 1rem; margin: 1rem; }
+      .topic-btn {
+        padding: 1rem 1.2rem;
+        font-size: 1.05rem;
+        width: 100%;
+      }
+
+      .topic-label {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .page-card {
+        padding: 1rem;
+        margin: 1rem;
+      }
     }
 
     /* Subtopic btn style */
     .sub-button {
-      display:block;
-      width:100%;
+      display: block;
+      width: 100%;
       max-width: 520px;
       margin: 0.5rem auto;
       font-size: 1rem;
-      font-weight:600;
+      font-weight: 600;
       padding: 0.9rem;
-      border-radius:8px;
+      border-radius: 8px;
       transition: transform .12s ease, background-color .12s ease;
     }
-    .sub-button:hover { transform: translateX(6px); background-color:#0dcaf0; color:white; }
+
+    .sub-button:hover {
+      transform: translateX(6px);
+      background-color: #0dcaf0;
+      color: white;
+    }
 
     /* hide/show helpers */
-    .hidden { display:none !important; }
-    .visible-block { display:block !important; }
+    .hidden {
+      display: none !important;
+    }
+
+    .visible-block {
+      display: block !important;
+    }
 
     /* ensure clickable area for toggles */
-    .topic-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap: 12px; }
+    .topic-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
 
     /* small helper to center the Home message a bit */
-    #homeSection { display:flex; justify-content:center; align-items:center; padding:2rem 1rem; }
-    
+    #homeSection {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
     /* Container that restricts text movement */
-.marquee-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 2rem;
+    .marquee-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 2rem;
+    }
+
+    /* Text that will animate */
+    .marquee-text {
+      position: absolute;
+      white-space: nowrap;
+      animation: scroll-left-right 4s ease-in-out infinite alternate;
+      font-size: 1.25rem;
+      left: 0;
+    }
+
+    @keyframes scroll-left-right {
+      from {
+        left: 0%;
+      }
+
+      to {
+        left: 100%;
+        transform: translateX(-100%);
+      }
+    }
+
+    /* ------- MATERIALS SECTION -------- */
+    .material-block {
+      background-color: #f7fbfd;
+      border: 1px solid #d9edf7;
+      border-left: 6px solid #17a2b8;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .material-title {
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #0a5f74;
+    }
+
+    .material-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .material-btn {
+      padding: 0.6rem 1.1rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: transform 0.1s ease;
+    }
+
+    .material-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Mobile friendly tweaks */
+    @media (max-width: 576px) {
+      .material-links {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .material-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .unit-content {
+      margin-top: 1rem;
+      background: #e6f4f8;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #bde0eb;
+    }
+    /* === Questions area styles (distinct look) === */
+.questions-grid {
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  justify-content:center;
+  margin-top:1rem;
 }
 
-/* Text that will animate */
-.marquee-text {
-  position: absolute;
-  white-space: nowrap;
-  animation: scroll-left-right 4s ease-in-out infinite alternate;
-  font-size: 1.25rem;
-  left: 0;
+.question-card {
+  background: linear-gradient(180deg,#ffffff, #f3fffd);
+  border-radius:12px;
+  padding:1rem;
+  width:220px;
+  box-shadow: 0 10px 22px rgba(6,54,66,0.06);
+  border: 1px solid rgba(3, 102, 102, 0.06);
+  text-align:center;
+  transition: transform .14s ease, box-shadow .14s ease;
 }
 
-@keyframes scroll-left-right {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 100%;
-    transform: translateX(-100%);
-  }
-}
-/* ------- MATERIALS SECTION -------- */
-.material-block {
-  background-color: #f7fbfd;
-  border: 1px solid #d9edf7;
-  border-left: 6px solid #17a2b8;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.question-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(6,54,66,0.08);
 }
 
-.material-title {
-  font-weight: 600;
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  color: #0a5f74;
+.question-card h6 {
+  color:#063642;
+  font-weight:700;
+  margin-bottom:.4rem;
+  font-size:1rem;
 }
 
-.material-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.question-card p {
+  color:#0a5f74;
+  font-size:.88rem;
+  margin:0;
+  min-height:40px;
 }
 
-.material-btn {
-  padding: 0.6rem 1.1rem;
-  font-weight: 600;
-  border-radius: 6px;
-  transition: transform 0.1s ease;
+.question-btn {
+  margin-top:.8rem;
+  padding:.45rem .8rem;
+  font-weight:700;
+  border-radius:8px;
+  border:none;
+  background:linear-gradient(90deg,#00c9ff,#17a2b8);
+  color:#fff;
+  cursor:pointer;
 }
 
-.material-btn:hover {
-  transform: scale(1.05);
+#questionsContent {
+  margin-top:1rem;
+  background:#eef9f9;
+  border:1px solid #cdeeea;
+  padding:1rem;
+  border-radius:8px;
 }
-
-/* Mobile friendly tweaks */
-@media (max-width: 576px) {
-  .material-links {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .material-btn {
-    width: 100%;
-    text-align: center;
-  }
-}
-.unit-content {
-  margin-top: 1rem;
-  background: #e6f4f8;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #bde0eb;
-}
-
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
 
   </style>
 </head>
@@ -204,8 +351,7 @@
         <a class="nav-item nav-link active" href="#" id="navHome">Home</a>
         <!-- Subjects uses #subjects but we intercept clicks via JS to show the topics area -->
         <a class="nav-item nav-link" href="#syllabus">Syllabus</a>
-        <a class="nav-item nav-link" href="#subjects" id="navSubjects">Subjects</a>
-        <a class="nav-item nav-link" href="#quiz">Quiz</a>
+        <a class="nav-item nav-link" href="#subjects" id="navSubjects">Notes</a>
         <a class="nav-item nav-link" href="#materials">Materials</a>
         <a class="nav-item nav-link" href="#questions">Questions</a>
       </div>
@@ -218,13 +364,35 @@
     <section id="homeSection" class="page-card" aria-label="Home section">
       <div style="width:100%; text-align:center;">
         <div id="examMessage" class="alert alert-info text-center font-weight-bold" role="alert">
-  <div class="marquee-container">
-    <span class="marquee-text">🎓 All The Best for 4-1 Semester Exam! 📚</span>
-  </div>
-</div>
+          <div class="marquee-container">
+            <span class="marquee-text">🎓 All The Best for 4-1 Semester Exam! 📚</span>
+          </div>
+        </div>
 
         <!-- optionally add a short line or instruction -->
-        <p style="color:#065a5f; font-weight:600; margin-top:0.8rem;">Click <strong>Subjects</strong> in the navbar to open your subject units.</p>
+     
+      <!-- inside #homeSection -->
+<a id="btnNotes" class="btn btn-outline-secondary sub-button" href="#" role="button" aria-controls="topics">Click here for Notes</a>
+ <div class="d-flex justify-content-center">
+  <table class="table table-bordered text-center" style="width: 50%;">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Subject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>17-11-2025</td><td>UHV</td></tr>
+      <tr><td>19-11-2025</td><td>CC</td></tr>
+      <tr><td>24-11-2025</td><td>WNS</td></tr>
+      <tr><td>26-11-2025</td><td>API&amp;M</td></tr>
+      <tr><td>28-11-2025</td><td>SCT</td></tr>
+      <tr><td>03-12-2025</td><td>DLT</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
       </div>
     </section>
 
@@ -243,7 +411,7 @@
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-02/">Unit - 02</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-03/">Unit - 03</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-04/">Unit - 04</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-05/">Unit - 05</a>
+
           </div>
         </div>
       </section>
@@ -253,14 +421,15 @@
         <div class="d-flex flex-column">
           <div class="topic-row w-100 mb-3">
             <div class="topic-label">Subject-2 :</div>
-            <button class="topic-btn" data-toggle-sub="#wns-subtopics" aria-expanded="false">Wireless Network Security</button>
+            <button class="topic-btn" data-toggle-sub="#wns-subtopics" aria-expanded="false">Wireless Network
+              Security</button>
           </div>
           <div id="wns-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-01/">Unit - 01</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-02/">Unit - 02</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-03/">Unit - 03</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-04/">Unit - 04</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-05/">Unit - 05</a>
+
           </div>
         </div>
       </section>
@@ -270,169 +439,432 @@
         <div class="d-flex flex-column">
           <div class="topic-row w-100 mb-3">
             <div class="topic-label">Subject-3 :</div>
-            <button class="topic-btn" data-toggle-sub="#sct-subtopics" aria-expanded="false">Secure Coding Techniques</button>
+            <button class="topic-btn" data-toggle-sub="#sct-subtopics" aria-expanded="false">Secure Coding
+              Techniques</button>
           </div>
           <div id="sct-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-01/">Unit - 01</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-02/">Unit - 02</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-03/">Unit - 03</a>
             <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-04/">Unit - 04</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-05/">Unit - 05</a>
+
           </div>
         </div>
       </section>
 
-      <!-- SUBJECT 4 -->
-      <section class="page-card">
-        <div class="d-flex flex-column">
-          <div class="topic-row w-100 mb-3">
-            <div class="topic-label">Subject-4 :</div>
-            <button class="topic-btn" data-toggle-sub="#dlt-subtopics" aria-expanded="false">Deep Learning</button>
-          </div>
-          <div id="dlt-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-01/">Unit - 01</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-02/">Unit - 02</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-03/">Unit - 03</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-04/">Unit - 04</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/DLT-Unit-05/">Unit - 05</a>
-          </div>
-        </div>
-      </section>
 
-      <!-- SUBJECT 5 -->
-      <section class="page-card">
-        <div class="d-flex flex-column">
-          <div class="topic-row w-100 mb-3">
-            <div class="topic-label">Subject-5 :</div>
-            <button class="topic-btn" data-toggle-sub="#apim-subtopics" aria-expanded="false">API & M</button>
-          </div>
-          <div id="apim-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-01/">Unit - 01</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-02/">Unit - 02</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-03/">Unit - 03</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-04/">Unit - 04</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/APIM-Unit-05/">Unit - 05</a>
-          </div>
-        </div>
-      </section>
     </div>
 
   </main>
   <!-- MATERIALS AREA (hidden by default) -->
-<div id="materialsArea" class="hidden" aria-hidden="true">
-  <section class="page-card" aria-label="Materials section">
-    <h3 class="text-center mb-4" style="color: #0a5f74;">📘 Study Materials</h3>
+  <div id="materialsArea" class="hidden" aria-hidden="true">
+    <section class="page-card" aria-label="Materials section">
+      <h3 class="text-center mb-4" style="color: #0a5f74;">📘 Study Materials</h3>
 
-    <!-- Sample Subject Block: Cloud Computing -->
-    <div class="material-block">
-      <h5 class="material-title">Cloud Computing</h5>
-      <div class="material-links">
-        <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="https://drive.google.com/file/d/1uM6xNJr8Pg0sEsV1d1uZdzQJVPuOhv7P/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      <!-- Sample Subject Block: Cloud Computing -->
+      <div class="material-block">
+        <h5 class="material-title">Cloud Computing</h5>
+        <div class="material-links">
+          <a href="https://drive.google.com/file/d/1KzUWOCpuu7rDTVnSzEZD_u8-FoEvJA64/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+          <a href="https://drive.google.com/file/d/1CwTV3PuQsVG5Uo4H9bzDr8fP0-qVDrRo/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+          <a href="https://drive.google.com/file/d/1qrqV2F-ddzJl9a06pJCVWWq2IUWGIPc0/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+          <a href="https://drive.google.com/file/d/1osrp8u8vCR9mNrXDgADlatohDCBWSX2s/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+          <a href="https://drive.google.com/file/d/1uM6xNJr8Pg0sEsV1d1uZdzQJVPuOhv7P/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        </div>
       </div>
-    </div>
 
-        <div class="material-block">
-      <h5 class="material-title">Wireless Network Security</h5>
-      <div class="material-links">
-        <a href="https://drive.google.com/file/d/1U1bmupMiY82Pl7lC551aTj2ByU_0Scfy/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1tQr5epSyWAti0akvyptuV7--BewbK7OV/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/1nxG734yHlRVjSxT53i8Glw2hwujx91xF/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1lD_dqw4HeYOrMcwf5-pwdRHe_kSO72Ag/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="https://drive.google.com/file/d/1wQpkPHsTy2_dWoLxOQ4OJWydu3rn8Drj/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      <div class="material-block">
+        <h5 class="material-title">Wireless Network Security</h5>
+        <div class="material-links">
+          <a href="https://drive.google.com/file/d/1U1bmupMiY82Pl7lC551aTj2ByU_0Scfy/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+          <a href="https://drive.google.com/file/d/1tQr5epSyWAti0akvyptuV7--BewbK7OV/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+          <a href="https://drive.google.com/file/d/1nxG734yHlRVjSxT53i8Glw2hwujx91xF/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+          <a href="https://drive.google.com/file/d/1lD_dqw4HeYOrMcwf5-pwdRHe_kSO72Ag/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+          <a href="https://drive.google.com/file/d/1wQpkPHsTy2_dWoLxOQ4OJWydu3rn8Drj/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        </div>
       </div>
-    </div>
 
-        <div class="material-block">
-      <h5 class="material-title">Secure Coding Techniques</h5>
-      <div class="material-links">
-        <a href="https://docs.google.com/document/d/1smKIA6kM1rlnDg02juVbbyMghJ-kGdCE" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://docs.google.com/document/d/1rx59kv8rbEf0gSaLVquWuOen1YWb62rx" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://docs.google.com/document/d/1IMyqpFr5Yq44A6we6Jn7V_p2cVvM183d" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://docs.google.com/document/d/1EhMH1AxQUqa6F2Zw1wjD8HOchzF0N71z" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="https://docs.google.com/document/d/1LHZYApRgHWf8lqAGwZ4QX2jncB0bMjlf" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      <div class="material-block">
+        <h5 class="material-title">Secure Coding Techniques</h5>
+        <div class="material-links">
+          <a href="https://docs.google.com/document/d/1smKIA6kM1rlnDg02juVbbyMghJ-kGdCE"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+          <a href="https://docs.google.com/document/d/1rx59kv8rbEf0gSaLVquWuOen1YWb62rx"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+          <a href="https://docs.google.com/document/d/1IMyqpFr5Yq44A6we6Jn7V_p2cVvM183d"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+          <a href="https://docs.google.com/document/d/1EhMH1AxQUqa6F2Zw1wjD8HOchzF0N71z"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+          <a href="https://docs.google.com/document/d/1LHZYApRgHWf8lqAGwZ4QX2jncB0bMjlf"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        </div>
       </div>
-    </div>
 
 
-        <div class="material-block">
-      <h5 class="material-title">Deep Learning Techniques</h5>
-      <div class="material-links">
-        <a href="https://drive.google.com/file/d/1K_2O21d07xCeGf7iIg5qnqTig1s3Qmsm/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1VJLqJcMN78XA1PBiynfjgpri4Ba1g4dx/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/1S1D9MfJjXnWs6lBEUKR6AV6x7rj8cGJy/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1Oiu1BlHzkWn-l9wEKOf-UckZmbXrtMGw/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="https://drive.google.com/file/d/1wmJqPMJxsArxpWzre0Fj_WcMZmJmROPM/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      <div class="material-block">
+        <h5 class="material-title">Deep Learning Techniques</h5>
+        <div class="material-links">
+          <a href="https://drive.google.com/file/d/1K_2O21d07xCeGf7iIg5qnqTig1s3Qmsm/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+          <a href="https://drive.google.com/file/d/1VJLqJcMN78XA1PBiynfjgpri4Ba1g4dx/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+          <a href="https://drive.google.com/file/d/1S1D9MfJjXnWs6lBEUKR6AV6x7rj8cGJy/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+          <a href="https://drive.google.com/file/d/1Oiu1BlHzkWn-l9wEKOf-UckZmbXrtMGw/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+          <a href="https://drive.google.com/file/d/1wmJqPMJxsArxpWzre0Fj_WcMZmJmROPM/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        </div>
       </div>
-    </div>
 
 
 
-        <div class="material-block">
-      <h5 class="material-title">API & M</h5>
-      <div class="material-links">
-        <a href="https://drive.google.com/file/d/127-De7MgzhTLrmJzMy7O19A7Nlqu62sv/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1-QMAFTBfjdzWTKJ0LpGGEHLo9h9W0ZYE/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/1EQDXXFQSd8VJRQ1050Ww_I6XLRkCc9NQ/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1PK7Xa77mZY1PcJ5ihS897mmRDGbQVQGw/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="https://drive.google.com/file/d/1SioPT_3tZHsW93zufhy9CWdRsn2y0WWD/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      <div class="material-block">
+        <h5 class="material-title">API & M</h5>
+        <div class="material-links">
+          <a href="https://drive.google.com/file/d/127-De7MgzhTLrmJzMy7O19A7Nlqu62sv/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+          <a href="https://drive.google.com/file/d/1-QMAFTBfjdzWTKJ0LpGGEHLo9h9W0ZYE/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+          <a href="https://drive.google.com/file/d/1EQDXXFQSd8VJRQ1050Ww_I6XLRkCc9NQ/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+          <a href="https://drive.google.com/file/d/1PK7Xa77mZY1PcJ5ihS897mmRDGbQVQGw/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+          <a href="https://drive.google.com/file/d/1SioPT_3tZHsW93zufhy9CWdRsn2y0WWD/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        </div>
       </div>
-    </div>
 
-        <div class="material-block">
-      <h5 class="material-title">Universal Human Values</h5>
-      <div class="material-links">
-        <a href="https://drive.google.com/file/d/1_ab49NJsbmppjbxtQyzu_kQPDTP9eyA_/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
-        <a href="https://drive.google.com/file/d/1C1BQZS-VY2eGNhOsQwH0Vnk3JMeHf1j6/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
-        <a href="https://drive.google.com/file/d/10QEvV3A_EM-RY1W-J-MA1ktfS6c2Tv9c/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
-        <a href="https://drive.google.com/file/d/1POqsInhy2VhTjDKEPh-cSpg7UQK9lJQG/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
-        <a href="https://drive.google.com/file/d/1gJeAs2ZxQg6WsCfZots5sx0i3VNfYaL7/view?usp=sharing" class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+      <div class="material-block">
+        <h5 class="material-title">Universal Human Values</h5>
+        <div class="material-links">
+          <a href="https://drive.google.com/file/d/1_ab49NJsbmppjbxtQyzu_kQPDTP9eyA_/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 01</a>
+          <a href="https://drive.google.com/file/d/1C1BQZS-VY2eGNhOsQwH0Vnk3JMeHf1j6/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 02</a>
+          <a href="https://drive.google.com/file/d/10QEvV3A_EM-RY1W-J-MA1ktfS6c2Tv9c/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 03</a>
+          <a href="https://drive.google.com/file/d/1POqsInhy2VhTjDKEPh-cSpg7UQK9lJQG/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 04</a>
+          <a href="https://drive.google.com/file/d/1gJeAs2ZxQg6WsCfZots5sx0i3VNfYaL7/view?usp=sharing"
+            class="btn btn-sm btn-primary material-btn" target="_blank">Unit 05</a>
+        </div>
       </div>
-    </div>
-    <!-- You can duplicate this block for each subject -->
-  </section>
+      <!-- You can duplicate this block for each subject -->
+    </section>
 
+    <!-- SYLLABUS AREA (hidden by default) -->
+  </div>
   <!-- SYLLABUS AREA (hidden by default) -->
+  <div id="syllabusArea" class="hidden" aria-hidden="true">
+    <section class="page-card" aria-label="Syllabus section">
+      <h3 class="text-center mb-4" style="color: #0a5f74;">📚 Syllabus</h3>
+
+      <div class="material-block">
+        <h5 class="material-title">Cloud Computing — Units</h5>
+        <div class="material-links">
+          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit1')">Unit 01</button>
+          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit2')">Unit 02</button>
+          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit3')">Unit 03</button>
+          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit4')">Unit 04</button>
+          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit5')">Unit 05</button>
+        </div>
+
+        <!-- Unit Content Blocks -->
+        <div id="cc-unit1" class="unit-content hidden">
+          <p><strong>UNIT I:</strong> Systems Modeling, Clustering and Virtualization: Scalable Computing over the
+            Internet — The Age of Internet Computing, Scalable computing over the internet, Technologies for Network
+            Based Systems, System models for Distributed and Cloud Computing, Performance, Security and Energy
+            Efficiency.</p>
+        </div>
+
+        <div id="cc-unit2" class="unit-content hidden">
+          <p><strong>UNIT II:</strong> Virtual Machines and Virtualization of Clusters and Data Centers: Implementation
+            Levels of Virtualization, Virtualization Structures/ Tools and Mechanisms, Virtualization of CPU, Memory and
+            I/O Devices, Virtual Clusters and Resource Management, Virtualization for Data-Center Automation.</p>
+        </div>
+
+        <div id="cc-unit3" class="unit-content hidden">
+          <p><strong>UNIT III:</strong> Cloud Platform Architecture: Cloud Computing and Service Models, Public Cloud
+            Platforms, Service Oriented Architecture, Programming on Amazon AWS and Microsoft Azure.</p>
+        </div>
+
+        <div id="cc-unit4" class="unit-content hidden">
+          <p><strong>UNIT IV:</strong> Cloud Resource Management and Scheduling: Policies and Mechanisms for Resource
+            Management, Applications of Control Theory to Task Scheduling on a Cloud, Stability of a Two Level Resource
+            Allocation Architecture, Feedback Control Based on Dynamic Thresholds, Coordination of Specialized Autonomic
+            Performance Managers, Resource Bundling, Scheduling Algorithms for Computing Clouds — Fair Queuing, Start
+            Time Fair Queuing.</p>
+        </div>
+
+        <div id="cc-unit5" class="unit-content hidden">
+          <p><strong>UNIT V:</strong> Storage Systems: Evolution of storage technology, storage models, file systems and
+            database, distributed file systems, general parallel file systems, Google file system.</p>
+        </div>
+      </div>
+
+      <!-- Wireless Network Security — Units buttons -->
+<div class="material-block">
+  <h5 class="material-title">Wireless Network Security — Units</h5>
+  <div class="material-links">
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit1')">Unit 01</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit2')">Unit 02</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit3')">Unit 03</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit4')">Unit 04</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit5')">Unit 05</button>
+  </div>
+
+  <!-- Unit content blocks (hidden by default) -->
+  <div id="wns-unit1" class="unit-content hidden">
+    <p><strong>UNIT I:</strong> Introduction to Wireless — History of wireless technologies and wireless security; state of wireless security industry; common 2001-era wireless threats such as uncontrolled terrain, communications jamming (DoS), data injection/modification, man-in-the-middle attacks, rogue clients/APs, and typical attacker equipment.</p>
+  </div>
+
+  <div id="wns-unit2" class="unit-content hidden">
+    <p><strong>UNIT II:</strong> Wireless security protocols & cryptography — OSI/Internet model overview; wireless LAN security protocols; cryptography basics; SSL/TLS and SSH (including MITM cautions), WTLS, WEP, 802.1x, and IPsec.</p>
+  </div>
+
+  <div id="wns-unit3" class="unit-content hidden">
+    <p><strong>UNIT III:</strong> Security considerations for wireless devices — device security issues (physical security, information leakage), application security and detailed device analysis (laptops, PDAs); wireless infrastructure; introduction to cellular networks (FDMA, TDMA, CDMA), spread-spectrum primer, PDC, and associated security threats.</p>
+  </div>
+
+  <div id="wns-unit4" class="unit-content hidden">
+    <p><strong>UNIT IV:</strong> Wireless data networks — CDPD (architecture and security), Mobitex (architecture/security), gateways and security models; wireless standards & technologies overview (infrared, RF, spread spectrum, OFDM) and standards bodies (IEEE 802.*, ETSI), HomeRF, UWB and future trends.</p>
+  </div>
+
+  <div id="wns-unit5" class="unit-content hidden">
+    <p><strong>UNIT V:</strong> Wireless deployment strategies — implementing WLANs with security in mind, common wireless applications; designs for enterprise campus, IST deployments, retail/manufacturing and SOHO — security considerations and recommended deployment patterns.</p>
+  </div>
+
 </div>
-<!-- SYLLABUS AREA (hidden by default) -->
-<div id="syllabusArea" class="hidden" aria-hidden="true">
-  <section class="page-card" aria-label="Syllabus section">
-    <h3 class="text-center mb-4" style="color: #0a5f74;">📚 Syllabus</h3>
+  
 
-    <div class="material-block">
-      <h5 class="material-title">Cloud Computing — Units</h5>
-      <div class="material-links">
-        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit1')">Unit 01</button>
-        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit2')">Unit 02</button>
-        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit3')">Unit 03</button>
-        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit4')">Unit 04</button>
-        <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit5')">Unit 05</button>
-      </div>
+<div class="material-block">
+  <h5 class="material-title">Secure Coding Techniques — Units</h5>
+  <div class="material-links">
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit1')">Unit 01</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit2')">Unit 02</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit3')">Unit 03</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit4')">Unit 04</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit5')">Unit 05</button>
+  </div>
 
-      <!-- Unit Content Blocks -->
-      <div id="cc-unit1" class="unit-content hidden">
-        <p><strong>UNIT I:</strong> Systems Modeling, Clustering and Virtualization: Scalable Computing over the Internet — The Age of Internet Computing, Scalable computing over the internet, Technologies for Network Based Systems, System models for Distributed and Cloud Computing, Performance, Security and Energy Efficiency.</p>
-      </div>
+  <div id="sct-unit1" class="unit-content hidden">
+    <p><strong>UNIT I:</strong> Network and Information security Fundamentals: Network Basics, Network Components, Network 
+    Types, Network Communication Types, Introduction to Networking Models, Cyber Security Objectives 
+    and Services, Other Terms of Cyber Security, Myths Around Cyber Security, Myths Around Cyber 
+    Security, Recent Cyber Attacks, Generic Conclusion about Attacks, Why and What is Cyber Security, 
+    Categories of Attack</p>
+  </div>
 
-      <div id="cc-unit2" class="unit-content hidden">
-        <p><strong>UNIT II:</strong> Virtual Machines and Virtualization of Clusters and Data Centers: Implementation Levels of Virtualization, Virtualization Structures/ Tools and Mechanisms, Virtualization of CPU, Memory and I/O Devices, Virtual Clusters and Resource Management, Virtualization for Data-Center Automation.</p>
-      </div>
+  <div id="sct-unit2" class="unit-content hidden">
+    <p><strong>UNIT II:</strong> Introduction to Cyber security: Introduction to OWASP Top 10, A1 Injection, A1 Injection Risks Root 
+    Causes and its Mitigation, A1 Injection, A2 Broken Authentication and Session Management, A7 Cross 
+    Site Scripting XSS,A3 Sensitive Data Exposure, A5 Broken Access Control, A4 XML External Entity 
+    (XEE), A6 Security Misconfiguration, A7 Missing Function Level Access Control, A8 Cross Site Request 
+    Forgery CSRF, A8 Insecure Deserialization, A9 Using Components With Known Vulnerabilities, A10 
+    Unvalidated Redirects and Forwards, A10 Insufficient Logging and Monitoring, Secure Coding Practices, 
+    Secure Design Principles, Threat Modeling, Microsoft SDL Tool</p>
+  </div>
 
-      <div id="cc-unit3" class="unit-content hidden">
-        <p><strong>UNIT III:</strong> Cloud Platform Architecture: Cloud Computing and Service Models, Public Cloud Platforms, Service Oriented Architecture, Programming on Amazon AWS and Microsoft Azure.</p>
-      </div>
+  <div id="sct-unit3" class="unit-content hidden">
+    <p><strong>UNIT III:</strong> Secure coding practices and OWASP Top 10: Declarative Security, Programmatic Security, 
+    Concurrency, Configuration, Cryptography, Input and Output Sanitization, Error Handling, Input 
+    Validation, Logging and auditing, Session Management, Exception Management, Safe APIs, Type Safety, 
+    Memory Management, Tokenizing, Sandboxing, Static and dynamic testing, vulnerability scanning and 
+    penetration testing</p>
+  </div>
 
-      <div id="cc-unit4" class="unit-content hidden">
-        <p><strong>UNIT IV:</strong> Cloud Resource Management and Scheduling: Policies and Mechanisms for Resource Management, Applications of Control Theory to Task Scheduling on a Cloud, Stability of a Two Level Resource Allocation Architecture, Feedback Control Based on Dynamic Thresholds, Coordination of Specialized Autonomic Performance Managers, Resource Bundling, Scheduling Algorithms for Computing Clouds — Fair Queuing, Start Time Fair Queuing.</p>
-      </div>
+  <div id="sct-unit4" class="unit-content hidden">
+    <p><strong>UNIT IV:</strong> Secure coding practices in C/C++ and Java: Potential Software Risks in C/C++, Defensive coding, 
+    Preventative Planning, Clean Code, Iterative Design, Assertions, Pre Post Conditions, Low level design 
+    inspections, Unit Tests 
+    Java- Managing Denial of Service, Securing Information, Data Integrity, Accessibility and Extensibility, 
+    Securing Objects, Serialization Security</p>
+  </div>
 
-      <div id="cc-unit5" class="unit-content hidden">
-        <p><strong>UNIT V:</strong> Storage Systems: Evolution of storage technology, storage models, file systems and database, distributed file systems, general parallel file systems, Google file system.</p>
-      </div>
+  <div id="sct-unit5" class="unit-content hidden">
+    <p><strong>UNIT V:</strong> Secure coding in Python: Interactive Python Scripting, Python Variables, Conditionals, Loops, 
+    Functions, External Modules, File operations, Web requests</p>
+  </div>
+</div>
+<div class="material-block">
+  <h5 class="material-title">Deep Learning Techniques — Units</h5>
+  <div class="material-links">
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit1')">Unit 01</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit2')">Unit 02</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit3')">Unit 03</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit4')">Unit 04</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit5')">Unit 05</button>
+  </div>
+
+  <div id="dlt-unit1" class="unit-content hidden">
+    <p><strong>UNIT I:</strong> Fundamentals of Deep Learning: Artificial Intelligence, History of Machine learning: Probabilistic 
+    Modeling, Early Neural Networks, Kernel Methods, Decision Trees, Random forests and Gradient 
+    Boosting Machines, Fundamentals of Machine Learning: Four Branches of Machine Learning, 
+    Evaluating Machine learning Models, Overfitting and Underfitting. [Text Book 2]</p>
+  </div>
+
+  <div id="dlt-unit2" class="unit-content hidden">
+    <p><strong>UNIT II:</strong> Introducing Deep Learning: Biological and Machine Vision, Human and Machine Language, 
+    Artificial Neural Networks, Training Deep Networks, Improving Deep Networks. [Text Book3]</p>
+  </div>
+
+  <div id="dlt-unit3" class="unit-content hidden">
+    <p><strong>UNIT III:</strong> Neural Networks: Anatomy of Neural Network, Introduction to Keras: Keras, TensorFlow, 
+    Theano and CNTK, Setting up Deep Learning Workstation, Classifying Movie Reviews: Binary 
+    Classification, Classifying newswires: Multiclass Classification.  [Text Book 2]</p>
+  </div>
+
+  <div id="dlt-unit4" class="unit-content hidden">
+    <p><strong>UNIT IV:</strong> Convolutional Neural Networks: Nerual Network and Representation Learing, Convolutional Layers, 
+    Multichannel Convolution Operation, Recurrent Neural Networks: Introduction to RNN, RNN Code, 
+    PyTorch Tensors: Deep Learning with PyTorch, CNN in PyTorch. [Text Book 3]</p>
+  </div>
+
+  <div id="dlt-unit5" class="unit-content hidden">
+    <p><strong>UNIT V:</strong> Interactive Applications of Deep Learning: Machine Vision, Natural Language processing, Generative 
+    Adversial Networks, Deep Reinforcement Learning. [Text Book 1] 
+    Deep Learning Research: Autoencoders, Deep Generative Models: Boltzmann Machines Restricted 
+    Boltzmann Machines, Deep Belief Networks. [Text Book 1]</p>
+  </div>
+</div>
+<div class="material-block">
+  <h5 class="material-title">API & M — Units</h5>
+  <div class="material-links">
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit1')">Unit 01</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit2')">Unit 02</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit3')">Unit 03</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit4')">Unit 04</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit5')">Unit 05</button>
+  </div>
+
+  <div id="apim-unit1" class="unit-content hidden">
+    <p><strong>UNIT I:</strong> Spring 5 Basics :  Why Spring, What is Spring Framework, Spring Framework - Modules, Configuring 
+    IoC container using Java-based configuration, Introduction To Dependency Injection, Constructor 
+    Injection, Setter Injection, What is AutoScanning</p>
+  </div>
+
+  <div id="apim-unit2" class="unit-content hidden">
+    <p><strong>UNIT II:</strong> Spring Boot: Creating a Spring Boot Application, Spring Boot Application Annotation, What is 
+    Autowiring , Scope of a bean, Logger, Introduction to Spring AOP, Implementing AOP advices, Best 
+    Practices : Spring Boot Application</p>
+  </div>
+
+  <div id="apim-unit3" class="unit-content hidden">
+    <p><strong>UNIT III:</strong> Spring Data JPA with Boot: Limitations of JDBC API, Why Spring Data JPA, Spring Data JPA with 
+    Spring Boot, Spring Data JPA Configuration, Pagination and Sorting, Query Approaches, Named Queries 
+    and Query, Why Spring Transaction, Spring Declarative Transaction, Update Operation in Spring Data 
+    JPA, Custom Repository Implementation, Best Practices - Spring Data JPA</p>
+  </div>
+
+  <div id="apim-unit4" class="unit-content hidden">
+    <p><strong>UNIT IV:</strong> Web Services: Why Web services, SOA - Service Oriented Architecture, What are Web Services, Types 
+    of Web Services, SOAP based Web Services, RESTful Web Services, How to create RESTful Services</p>
+  </div>
+
+  <div id="apim-unit5" class="unit-content hidden">
+    <p><strong>UNIT V:</strong> Spring REST:  Spring REST - An Introduction, Creating a Spring REST Controller, @RequestBody and 
+    ResponseEntity, Parameter Injection, Usage of @PathVariable,  @RequestParam and @MatrixVariable, 
+    Exception Handling, Data Validation, Creating a REST Client, Versioning a Spring REST endpoint, 
+    Enabling CORS in Spring REST, Securing Spring REST endpoints</p>
+  </div>
+</div>
+<div class="material-block">
+  <h5 class="material-title">Universal Human Values (UHV2) — Units</h5>
+  <div class="material-links">
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit1')">Unit 01</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit2')">Unit 02</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit3')">Unit 03</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit4')">Unit 04</button>
+    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit5')">Unit 05</button>
+  </div>
+
+  <div id="uhv-unit1" class="unit-content hidden">
+    <p><strong>UNIT I:</strong> Objective: The objective of the course is four fold: 1. Development of a holistic perspective based on self-exploration about themselves (human 
+    being),family, society and nature/existence. 2. Understanding (or developing clarity) of the harmony in the human being, family, society and 
+    nature/existence 3. Strengthening of self-reflection. 4. Development of commitment and courage to act. 
+    Course Topics: The course has 28 lectures and 14 practice sessions in 5 modules: Module 1: Course Introduction - Need, Basic Guidelines, Content and Process for Value Education 
+    1. Purpose and motivation for the course, recapitulation from Universal Human   Values-I 
+    2. Self-Exploration–what is it? - Its content and process; ‘Natural Acceptance’ and Experiential 
+    Validation- as the process for self-exploration 
+    3. Continuous Happiness and Prosperity- A look at basic Human Aspirations 
+    4. Right understanding, Relationship and Physical Facility- the basic requirements for fulfilment of 
+    aspirations of every human being with their correct priority 
+    5. Understanding Happiness and Prosperity correctly- A critical appraisal of the current scenario 
+    6. Method to fulfil the above human aspirations: understanding and living in harmony at various levels.</p>
+  </div>
+
+  <div id="uhv-unit2" class="unit-content hidden">
+    <p><strong>UNIT II:</strong> Module 2: Understanding Harmony in the Human Being - Harmony in Myself! 
+    4. Understanding human being as a co-existence of the sentient ‘I’ and the material ‘Body’ 
+    5. Understanding the needs of Self (‘I’) and ‘Body’ - happiness and physical facility 
+    6. Understanding the Body as an instrument of ‘I’ (I being the doer, seer and enjoyer) 
+    7. Understanding the characteristics and activities of ‘I’ and harmony in ‘I’ 
+    8. Understanding the harmony of I with the Body: Sanyam and Health; correct appraisal of 
+    Physical needs, meaning of Prosperity in detail 
+    9. Programs to ensureSanyam and Health. Include practice sessions to discuss the role others have played in making material goods available to me. Identifying from one’s own life. Differentiate between prosperity and accumulation. Discuss program for ensuring health vs dealing with disease</p>
+  </div>
+
+  <div id="uhv-unit3" class="unit-content hidden">
+    <p><strong>UNIT III:</strong> Module 3: Understanding Harmony in the Family and Society- Harmony in Human-Human 
+    Relationship 10. Understanding values in human-human relationship; meaning of Justice (nine universal values in 
+    relationships) and program for its fulfilment to ensure mutual happiness; Trust and Respect as the 
+    foundational values of relationship 11. Understanding the meaning of Trust; Difference between intention and competence 
+    12. Understanding the meaning of Respect, Difference between respect and differentiation; the other 
+    salient values in relationship 13. Understanding the harmony in the society (society being an extension of family): Resolution, 
+    Prosperity, fearlessness (trust) and co-existence as comprehensive Human Goals 14. Visualizing a universal harmonious order in society- Undivided Society, Universal Order- from 
+    family to world family. Include practice sessions to reflect on relationships in family, hostel and institute as extended family, real life examples, teacher-student relationship, goal of education etc. Gratitude as a universal value in relationships. Discuss with scenarios. Elicit examples from students’ lives</p>
+  </div>
+
+  <div id="uhv-unit4" class="unit-content hidden">
+    <p><strong>UNIT IV:</strong> Module 4: Understanding Harmony in the Nature and Existence - Whole existence as Coexistence 
+    18. Understanding the harmony in the Nature 19. Interconnectedness and mutual fulfilment among the four orders of nature- recyclability and self
+    regulation in nature 20. Understanding Existence as Co-existence of mutually interacting units in all-pervasive space 
+    21. Holistic perception of harmony at all levels of existence. Include practice sessions to discuss human being as cause of imbalance in nature (film “Home” can be 
+    used), pollution, depletion of resources and role of technology etc.</p>
+  </div>
+
+  <div id="uhv-unit5" class="unit-content hidden">
+    <p><strong>UNIT V:</strong> Module 5: Implications of the above Holistic Understanding of Harmony on Professional Ethics 
+    22. Natural acceptance of human values 23. Definitiveness of Ethical Human Conduct 24. Basis for Humanistic Education, Humanistic Constitution and Humanistic Universal Order 
+    25. Competence in professional ethics: a. Ability to utilize the professional competence for augmenting 
+    universal human order b. Ability to identify the scope and characteristics of people- friendly and eco
+    friendly production systems, c. Ability to identify and develop appropriate technologies and management 
+    patterns for above production systems. 26. Case studies of typical holistic technologies, management models and production systems 
+    27. Strategy for transition from the present state to Universal Human Order: a. At the level of individual: 
+    as socially and ecologically responsible engineers, technologists and managers b. At the level of society: 
+    as mutually enriching institutions and organizations 28. Sum up. Include practice Exercises and Case Studies will be taken up in Practice (tutorial) Sessions eg. To discuss the conduct as an engineer or scientist etc.</p>
+  </div>
+</div>
+
+    </section>
+  </div>
+<!-- QUESTIONS AREA (hidden by default) -->
+<div id="questionsArea" class="hidden" aria-hidden="true">
+  <section class="page-card" aria-label="Questions section">
+    <h3 class="text-center mb-4" style="color: #0a5f74;">❓ Questions</h3>
+
+    <div class="questions-grid">
+            <a class="btn btn-outline-secondary sub-button" href="https://drive.google.com/file/d/1I-x2o_92jNjtp5pIqzNj0aFYUkY_MMex/view?usp=sharing">Cloud Computing</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://drive.google.com/file/d/1J6jP-hSQssgcdvQEjAgEmU61h_JKGasy/view?usp=sharing">Wireless Network Security</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://drive.google.com/file/d/1jPNRocPwbi8y4YLGlccrTFLLMdCr0pWo/view?usp=sharing">Secure Coding Techniques</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://drive.google.com/file/d/1cLH2TKpZnqwCyFyYyRN4PUEF_gxpeq-I/view?usp=sharing">Deep Learning Techniques</a>
+            <a class="btn btn-outline-secondary sub-button" href="https://drive.google.com/file/d/1lSGm6qqSyRJlxg6ZtfOqJo4FCpR3HEoU/view?usp=sharing">API&M</a>
+             <a class="btn btn-outline-secondary sub-button" href="https://drive.google.com/file/d/1cR-WYoMPYqPjc-l5wG4eyRpdgP85a3dF/view?usp=sharing">API&M</a>
     </div>
+
+    <!-- placeholder content region where you can inject actual questions (you will edit this in VS Code) -->
+    <div id="questionsContent" class="hidden" aria-live="polite"></div>
   </section>
 </div>
 
@@ -449,19 +881,21 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
 
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
   // main sections (may be null if not present)
   const homeSection = document.getElementById('homeSection');
   const topicsArea = document.getElementById('topicsArea');
   const materialsArea = document.getElementById('materialsArea');
-  const syllabusArea = document.getElementById('syllabusArea'); // <--- now present in DOM
+  const syllabusArea = document.getElementById('syllabusArea');
+  const questionsArea = document.getElementById('questionsArea'); // <-- new
 
   // nav items
   const navHome = document.getElementById('navHome');
   const navSubjects = document.getElementById('navSubjects');
   const navMaterials = document.querySelector('[href="#materials"]');
   const navSyllabus = document.querySelector('[href="#syllabus"]');
+  const navQuestions = document.querySelector('[href="#questions"]'); // <-- new
 
   // Subject toggle buttons (expand/collapse subtopics)
   const toggles = document.querySelectorAll('[data-toggle-sub]');
@@ -491,7 +925,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // utility: hide all main sections that exist
   function hideAllMain() {
-    [homeSection, topicsArea, materialsArea, syllabusArea].forEach(sec => {
+    [homeSection, topicsArea, materialsArea, syllabusArea, questionsArea].forEach(sec => {
       if (!sec) return;
       sec.classList.remove('visible-block');
       sec.classList.add('hidden');
@@ -499,7 +933,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // remove 'active' from nav links if they exist
-    [navHome, navSubjects, navMaterials, navSyllabus].forEach(nav => {
+    [navHome, navSubjects, navMaterials, navSyllabus, navQuestions].forEach(nav => {
       if (nav) nav.classList.remove('active');
     });
   }
@@ -539,9 +973,28 @@ document.addEventListener('DOMContentLoaded', function () {
     showSection(syllabusArea, navSyllabus);
   });
 
+  // Questions nav handler (new)
+  if (navQuestions) navQuestions.addEventListener('click', function (e) {
+    e.preventDefault();
+    showSection(questionsArea, navQuestions);
+  });
+
+  // "Click here for Notes" on the Home card -> open Topics (same behavior as navbar)
+  const btnNotes = document.getElementById('btnNotes');
+  if (btnNotes) {
+    btnNotes.addEventListener('click', function (e) {
+      e.preventDefault();
+      showSection(topicsArea, navSubjects);
+      // if on mobile, collapse the navbar so user sees the content (optional)
+      if (window.innerWidth <= 991) {
+        $navCollapse.collapse('hide');
+        $toggler.attr('aria-expanded', 'false');
+      }
+    });
+  }
+
   // support opening from URL hash
   const hash = window.location.hash;
-
   switch (hash) {
     case '#subjects':
       showSection(topicsArea, navSubjects);
@@ -552,12 +1005,14 @@ document.addEventListener('DOMContentLoaded', function () {
     case '#syllabus':
       showSection(syllabusArea, navSyllabus);
       break;
+    case '#questions': // <-- new
+      showSection(questionsArea, navQuestions);
+      break;
     default:
       showSection(homeSection, navHome);
   }
 
   // --- NEW: auto-open navbar on mobile (<= 991px) and keep behavior on resize ---
-  // Uses Bootstrap's collapse API (requires bootstrap + jQuery, which you already include).
   const $navCollapse = $('#navbarContent');
   const $toggler = $('.navbar-toggler');
 
@@ -608,20 +1063,87 @@ function showUnitContent(unitId) {
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
+
+/* ---------------------------
+   openQuestions(subject)
+   - fills #questionsContent with simple content
+   - shows the Questions section (it uses the same showSection helper)
+   - this must be global because HTML uses onclick="openQuestions(...)"
+   --------------------------- */
+function openQuestions(subject) {
+  // simple sample data; replace/extend this as you like
+  const sample = {
+    'Cloud Computing': [
+      'Explain virtualization and its types.',
+      'Compare IaaS, PaaS and SaaS with examples.',
+      'Describe resource scheduling algorithms in clouds.'
+    ],
+    'Wireless Network Security': [
+      'List common wireless threats and mitigation.',
+      'Explain WEP vulnerabilities and why WPA/WPA2 is better.'
+    ],
+    'Secure Coding Techniques': [
+      'Explain OWASP Top 10 and give examples for XSS and CSRF.',
+      'List defensive coding practices for input validation.'
+    ],
+    'Deep Learning Techniques': [
+      'Describe the backpropagation algorithm.',
+      'Explain the role of activation functions in neural nets.'
+    ],
+    'API & M': [
+      'What is Spring Boot and how does it simplify configuration?',
+      'Explain RESTful API design principles.'
+    ]
+  };
+
+  const questionsDiv = document.getElementById('questionsContent');
+  if (!questionsDiv) return;
+
+  // build HTML
+  const qList = sample[subject] || ['No prepared questions for this subject yet.'];
+  let html = `<h4 style="color:#063642; font-weight:700; margin-bottom:0.5rem;">${subject} — Questions</h4>`;
+  html += '<ol style="margin-top:0.5rem; padding-left:1.25rem;">';
+  qList.forEach(q => {
+    html += `<li style="margin-bottom:0.6rem;">${q}</li>`;
+  });
+  html += '</ol>';
+  html += `<p style="font-size:0.95rem; color:#0a5f74; margin-top:0.5rem;">(You can edit this content in VS Code.)</p>`;
+
+  questionsDiv.innerHTML = html;
+
+  // show the questionsArea (we can't call showSection directly because it's scoped inside DOMContentLoaded)
+  // replicate minimal showSection behaviour here:
+  const sections = [document.getElementById('homeSection'), document.getElementById('topicsArea'),
+                    document.getElementById('materialsArea'), document.getElementById('syllabusArea'),
+                    document.getElementById('questionsArea')];
+  sections.forEach(sec => {
+    if (!sec) return;
+    sec.classList.remove('visible-block');
+    sec.classList.add('hidden');
+    sec.setAttribute('aria-hidden', 'true');
+  });
+
+  const questionsArea = document.getElementById('questionsArea');
+  if (questionsArea) {
+    questionsArea.classList.remove('hidden');
+    questionsArea.classList.add('visible-block');
+    questionsArea.setAttribute('aria-hidden', 'false');
+    // mark nav link active if present
+    const navQuestions = document.querySelector('[href="#questions"]');
+    if (navQuestions) {
+      // clear other active classes
+      document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+      navQuestions.classList.add('active');
+    }
+    // ensure content region is visible
+    const content = document.getElementById('questionsContent');
+    if (content) content.classList.remove('hidden');
+    questionsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 </script>
 
+
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
