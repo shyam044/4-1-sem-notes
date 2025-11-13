@@ -967,20 +967,48 @@
 </div>
 
 <script>
-  // Select all buttons with class 'sub-button'
-  const buttons = document.querySelectorAll('.sub-button');
+  // === FIXED: Handle only .sub-button with data-pdf (Questions section PDFs) ===
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.sub-button[data-pdf]');
+    if (!btn) return;
+    e.preventDefault(); // Only prevent default for PDF buttons
+    const pdfFile = btn.getAttribute('data-pdf');
+    if (pdfFile) {
+      window.open(pdfFile, '_blank');
+    } else {
+      alert("PDF not found!");
+    }
+  });
 
-  // Add click event listener to each button
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const pdfFile = button.getAttribute('data-pdf'); // get PDF file name
-      if (pdfFile) {
-        // open the PDF file in a new browser tab
-        window.open(pdfFile, '_blank');
-      } else {
-        alert("PDF not found!");
-      }
-    });
+  // === Keep your existing PDF viewer (iframe) logic (unchanged) ===
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.pdf-link');
+    if (!btn) return;
+    e.preventDefault();
+
+    const pdfPath = btn.dataset.pdf;
+    if (!pdfPath) return;
+
+    const wrapper = document.getElementById('pdfViewerWrapper');
+    const iframe = document.getElementById('pdfViewer');
+    const downloadBtn = document.getElementById('downloadPdfBtn');
+
+    const encoded = encodeURI(pdfPath);
+    iframe.src = encoded;
+    downloadBtn.onclick = () => {
+      window.open(encoded, '_blank', 'noopener');
+    };
+
+    wrapper.style.display = 'block';
+    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Close PDF viewer
+  document.getElementById('closePdfBtn').addEventListener('click', function () {
+    const wrapper = document.getElementById('pdfViewerWrapper');
+    const iframe = document.getElementById('pdfViewer');
+    iframe.src = '';
+    wrapper.style.display = 'none';
   });
 </script>
 
