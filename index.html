@@ -952,6 +952,23 @@
   </section>
 </div>
 
+<script>
+  // Select all buttons with class 'sub-button'
+  const buttons = document.querySelectorAll('.sub-button');
+
+  // Add click event listener to each button
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const pdfFile = button.getAttribute('data-pdf'); // get PDF file name
+      if (pdfFile) {
+        // open the PDF file in a new browser tab
+        window.open(pdfFile, '_blank');
+      } else {
+        alert("PDF not found!");
+      }
+    });
+  });
+</script>
 
 
   <!-- Bootstrap JS + jQuery + Popper -->
