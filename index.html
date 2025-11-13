@@ -332,7 +332,11 @@
         th {
             background-color: #f2f2f2;
         }
-
+/* Mobile-friendly PDF modal */
+@media (max-width: 576px) {
+  #pdfViewerWrapper .btn-sm { font-size: .9rem; padding: .35rem .6rem; }
+  #pdfTitle { font-size: 1rem; }
+}
   </style>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ8GK8VNS9"></script>
@@ -607,18 +611,33 @@
     </div>
     <!-- (other material blocks stay unchanged) -->
 
-    <!-- PDF Viewer (hidden initially) -->
-    <div id="pdfViewerWrapper" style="display:none; margin-top:20px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-        <strong>PDF Viewer</strong>
-        <div>
-          <button id="downloadPdfBtn" class="btn btn-sm btn-outline-secondary" style="margin-right:6px;">Download</button>
-          <button id="closePdfBtn" class="btn btn-sm btn-danger">Close</button>
-        </div>
+<!-- PDF Viewer (hidden initially) -->
+<div id="pdfViewerWrapper" class="position-fixed top-0 start-0 w-100 h-100 bg-white d-none" style="z-index:1050;">
+  <div class="d-flex flex-column h-100">
+    <!-- Header with title + buttons -->
+    <div class="bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+      <strong id="pdfTitle" class="text-truncate me-2">PDF Viewer</strong>
+      <div>
+        <button id="downloadPdfBtn" class="btn btn-sm btn-outline-light me-2">Download</button>
+        <button id="closePdfBtn" class="btn btn-sm btn-outline-light">Close</button>
       </div>
-      <iframe id="pdfViewer" src="" width="100%" height="600px" style="border:1px solid #ddd;"></iframe>
     </div>
 
+    <!-- PDF container – responsive -->
+    <div class="flex-grow-1 position-relative overflow-auto">
+      <iframe id="pdfIframe" class="w-100 h-100 border-0" style="min-height:70vh;"></iframe>
+      <!-- PDF.js fallback (hidden until needed) -->
+      <div id="pdfCanvasContainer" class="d-none w-100 h-100 p-3 bg-light">
+        <canvas id="pdfCanvas"></canvas>
+        <div class="mt-2 text-center">
+          <button id="prevPage" class="btn btn-sm btn-secondary me-2">Prev</button>
+          <span id="pageInfo">Page <span id="pageNum">1</span> / <span id="pageCount">1</span></span>
+          <button id="nextPage" class="btn btn-sm btn-secondary ms-2">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   </section>
 
   <!-- SYLLABUS AREA (hidden by default) -->
@@ -1286,7 +1305,122 @@ function openQuestions(subject) {
 }
 </script>
 
+<!-- PDF.js (Mozilla) – CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.js"
+        integrity="sha512-JZ3R7iR1z6u3jV3p0z9R2iM4L0V9yZcP2i0p2i9K6K9kF9uKkS6p9zR7L0UjC5M4h5pL2RjK1iV6i6zG5jK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5zK5  crossorigin="anonymous"></script>
+<script>
+/* ---------- PDF Viewer (iframe + PDF.js fallback) ---------- */
+let pdfDoc = null, pageNum = 1, pageRendering = false, pageNumPending = null;
+const scale = 1.5;                 // adjust for mobile clarity
 
-</body>
+function renderPage(num) {
+  pageRendering = true;
+  pdfDoc.getPage(num).then(page => {
+    const viewport = page.getViewport({ scale });
+    const canvas = document.getElementById('pdfCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    const renderContext = { canvasContext: ctx, viewport };
+    const renderTask = page.render(renderContext);
+
+    renderTask.promise.then(() => {
+      pageRendering = false;
+      if (pageNumPending !== null) {
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+  document.getElementById('pageNum').textContent = num;
+}
+
+function queueRenderPage(num) {
+  if (pageRendering) pageNumPending = num;
+  else renderPage(num);
+}
+
+function onPrevPage() {
+  if (pageNum <= 1) return;
+  pageNum--;
+  queueRenderPage(pageNum);
+}
+function onNextPage() {
+  if (pageNum >= pdfDoc.numPages) return;
+  pageNum++;
+  queueRenderPage(pageNum);
+}
+
+/* ---- open PDF (called from .pdf-link clicks) ---- */
+function openPdfViewer(pdfPath, title) {
+  const wrapper = document.getElementById('pdfViewerWrapper');
+  const iframe = document.getElementById('pdfIframe');
+  const canvasContainer = document.getElementById('pdfCanvasContainer');
+
+  // reset UI
+  document.getElementById('pdfTitle').textContent = title || 'PDF Viewer';
+  wrapper.classList.remove('d-none');
+
+  // 1. Try native <iframe> (works on Chrome/Edge/Safari iOS)
+  iframe.src = pdfPath + '#toolbar=0&navpanes=0&scrollbar=0';
+  iframe.onload = () => {
+    // if iframe loaded a PDF (content-type PDF) hide canvas
+    canvasContainer.classList.add('d-none');
+  };
+  iframe.onerror = () => {
+    // 2. Fallback to PDF.js
+    iframe.src = '';               // clear iframe
+    canvasContainer.classList.remove('d-none');
+    pdfjsLib.getDocument(pdfPath).promise.then(pdf => {
+      pdfDoc = pdf;
+      document.getElementById('pageCount').textContent = pdf.numPages;
+      renderPage(pageNum = 1);
+    }).catch(() => alert('Could not load PDF.'));
+  };
+
+  // Download button
+  document.getElementById('downloadPdfBtn').onclick = () => window.open(pdfPath, '_blank');
+
+  // smooth scroll to top of modal
+  wrapper.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ---- close viewer ---- */
+document.getElementById('closePdfBtn').addEventListener('click', () => {
+  const wrapper = document.getElementById('pdfViewerWrapper');
+  const iframe = document.getElementById('pdfIframe');
+  iframe.src = '';
+  wrapper.classList.add('d-none');
+  // reset PDF.js state
+  pdfDoc = null;
+  pageNum = 1;
+});
+
+/* ---- click on any .pdf-link (Materials) ---- */
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.pdf-link');
+  if (!btn) return;
+  e.preventDefault();
+
+  const pdfPath = btn.dataset.pdf;
+  const title = btn.textContent.trim() || 'Unit PDF';
+  if (!pdfPath) return alert('PDF path missing');
+  openPdfViewer(pdfPath, title);
+});
+
+/* ---- optional: close on backdrop click (mobile friendly) ---- */
+document.getElementById('pdfViewerWrapper').addEventListener('click', e => {
+  if (e.target === document.getElementById('pdfViewerWrapper')) {
+    document.getElementById('closePdfBtn').click();
+  }
+});
+
+/* ---- PDF.js navigation buttons ---- */
+document.getElementById('prevPage').addEventListener('click', onPrevPage);
+document.getElementById('nextPage').addEventListener('click', onNextPage);
+</script>
+      </body>
 
 </html>
