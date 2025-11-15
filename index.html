@@ -1,303 +1,341 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>4-1 Semester — Subjects</title>
-  <!-- Bootstrap 4 CDN -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-  <style>
-    /* Global reset & base */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
-      min-height: 100vh;
-      padding-bottom: 50px;
-    }
-    /* ---------- NAVBAR ---------- */
-    .glass-navbar {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 0.5rem 1rem;
-      border-radius: 0 0 12px 12px;
-    }
-    .navbar-brand {
-      font-weight: 700;
-      color: #063642;
-      letter-spacing: 0.6px;
-    }
-    .navbar .nav-link {
-      color: #063642;
-      font-weight: 600;
-    }
-    .navbar .nav-link:hover {
-      color: #17a2b8;
-    }
-    /* mobile collapsed menu background for readability */
-    @media (max-width: 991px) {
-      .navbar-collapse {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 0.8rem;
-        border-radius: 8px;
-      }
-      .navbar-nav .nav-link {
-        padding: 0.5rem 0;
-      }
-    }
-    /* Toggler custom icon color (makes the three lines dark) */
-    .navbar-toggler {
-      border: none;
-    }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(12,86,96,0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    }
-    /* ---------- CARDS & CONTENT ---------- */
-    .page-card {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      margin: 1.5rem auto;
-      padding: 1.5rem;
-      max-width: 1024px;
-      transition: transform .18s ease;
-    }
-    .page-card:hover {
-      transform: translateY(-4px);
-    }
-    .topic-label {
-      font-size: 1.6rem;
-      color: #17a2b8;
-      font-weight: 700;
-      margin-right: 1rem;
-      display: flex;
-      align-items: center;
-    }
-    /* Large topic buttons — responsive */
-    .topic-btn {
-      padding: 1.6rem 2.4rem;
-      font-size: 1.45rem;
-      font-weight: 700;
-      border-radius: 10px;
-      white-space: nowrap;
-      background: linear-gradient(45deg, #00c9ff, #92fe9d);
-      color: #fff;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .topic-btn:active {
-      transform: translateY(1px);
-    }
-    .topic-btn:hover {
-      transform: translateY(-4px);
-    }
-    /* Smaller screens: reduce the huge buttons */
-    @media (max-width: 576px) {
-      .topic-btn {
-        padding: 1rem 1.2rem;
-        font-size: 1.05rem;
-        width: 100%;
-      }
-      .topic-label {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-      }
-      .page-card {
-        padding: 1rem;
-        margin: 1rem;
-      }
-    }
-    /* Subtopic btn style */
-    .sub-button {
-      display: block;
-      width: 100%;
-      max-width: 520px;
-      margin: 0.5rem auto;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.9rem;
-      border-radius: 8px;
-      transition: transform .12s ease, background-color .12s ease;
-    }
-    .sub-button:hover {
-      transform: translateX(6px);
-      background-color: #0dcaf0;
-      color: white;
-    }
-    /* hide/show helpers */
-    .hidden {
-      display: none !important;
-    }
-    .visible-block {
-      display: block !important;
-    }
-    /* ensure clickable area for toggles */
-    .topic-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-    /* small helper to center the Home message a bit */
-    #homeSection {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem 1rem;
-    }
-    /* Container that restricts text movement */
-    .marquee-container {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 2rem;
-    }
-    /* Text that will animate */
-    .marquee-text {
-      position: absolute;
-      white-space: nowrap;
-      animation: scroll-left-right 4s ease-in-out infinite alternate;
-      font-size: 1.25rem;
-      left: 0;
-    }
-    @keyframes scroll-left-right {
-      from {
-        left: 0%;
-      }
-      to {
-        left: 100%;
-        transform: translateX(-100%);
-      }
-    }
-    /* ------- MATERIALS SECTION -------- */
-    .material-block {
-      background-color: #f7fbfd;
-      border: 1px solid #d9edf7;
-      border-left: 6px solid #17a2b8;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-    .material-title {
-      font-weight: 600;
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      color: #0a5f74;
-    }
-    .material-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .material-btn {
-      padding: 0.6rem 1.1rem;
-      font-weight: 600;
-      border-radius: 6px;
-      transition: transform 0.1s ease;
-    }
-    .material-btn:hover {
-      transform: scale(1.05);
-    }
-    /* Mobile friendly tweaks */
-    @media (max-width: 576px) {
-      .material-links {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .material-btn {
-        width: 100%;
-        text-align: center;
-      }
-    }
-    .unit-content {
-      margin-top: 1rem;
-      background: #e6f4f8;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid #bde0eb;
-    }
-    /* === Questions area styles (distinct look) === */
-.questions-grid {
-  display:flex;
-  flex-wrap:wrap;
-  gap:16px;
-  justify-content:center;
-  margin-top:1rem;
-}
-.question-card {
-  background: linear-gradient(180deg,#ffffff, #f3fffd);
-  border-radius:12px;
-  padding:1rem;
-  width:220px;
-  box-shadow: 0 10px 22px rgba(6,54,66,0.06);
-  border: 1px solid rgba(3, 102, 102, 0.06);
-  text-align:center;
-  transition: transform .14s ease, box-shadow .14s ease;
-}
-.question-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 30px rgba(6,54,66,0.08);
-}
-.question-card h6 {
-  color:#063642;
-  font-weight:700;
-  margin-bottom:.4rem;
-  font-size:1rem;
-}
-.question-card p {
-  color:#0a5f74;
-  font-size:.88rem;
-  margin:0;
-  min-height:40px;
-}
-.question-btn {
-  margin-top:.8rem;
-  padding:.45rem .8rem;
-  font-weight:700;
-  border-radius:8px;
-  border:none;
-  background:linear-gradient(90deg,#00c9ff,#17a2b8);
-  color:#fff;
-  cursor:pointer;
-}
-#questionsContent {
-  margin-top:1rem;
-  background:#eef9f9;
-  border:1px solid #cdeeea;
-  padding:1rem;
-  border-radius:8px;
-}
-        table {
-            width: 50%;
-            border-collapse: collapse;
-            margin: 20px 0;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UHV-2 Unit-01 - Questions</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        th, td {
-            border: 1px solid #000;
-            padding: 8px 12px;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9f9f9;
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.55;
+        }
+
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 0.9rem 0.5rem;
             text-align: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
-        th {
-            background-color: #f2f2f2;
+
+        .container {
+            max-width: 900px;
+            margin: 1.8rem auto;
+            padding: 1.1rem;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+            page-break-after: always;
+            border-radius: 6px;
         }
-/* Mobile-friendly PDF modal */
-@media (max-width: 576px) {
-  #pdfViewerWrapper .btn-sm { font-size: .9rem; padding: .35rem .6rem; }
-  #pdfTitle { font-size: 1rem; }
-  #pdfCanvasContainer { touch-action: pan-y; } /* Allow vertical scroll */
-  #pdfCanvas { max-width: 100%; height: auto; } /* Responsive canvas */
-}
-  </style>
-  <!-- Google tag (gtag.js) -->
+
+        h2 {
+            color: #0077cc;
+            margin: 0 0 0.9rem;
+            font-size: 1.55rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: #444;
+            margin: 1.1rem 0 0.55rem;
+            font-size: 1.28rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0.55rem 0;
+        }
+
+        ul, ol {
+            margin: 0.55rem 0;
+            padding-left: 1.3rem;
+        }
+
+        li {
+            margin-bottom: 0.35rem;
+        }
+
+        li > ul, li > ol {
+            margin: 0.35rem 0;
+            padding-left: 1.2rem;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 11px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.4;
+            margin: 0.7rem 0;
+            border: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.25rem;
+                padding: 0.75rem 0.5rem;
+            }
+
+            .container {
+                margin: 1.2rem auto;
+                padding: 0.95rem;
+                border-radius: 5px;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+                margin-bottom: 0.8rem;
+            }
+
+            h3 {
+                font-size: 1.15rem;
+                margin: 0.95rem 0 0.45rem;
+            }
+
+            ul, ol {
+                padding-left: 1rem;
+            }
+
+            li > ul, li > ol {
+                padding-left: 1rem;
+            }
+
+            pre {
+                font-size: 0.82rem;
+                padding: 9px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 1rem auto;
+                padding: 0.85rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            ul, ol {
+                padding-left: 0.9rem;
+            }
+
+            li > ul, li > ol {
+                padding-left: 0.9rem;
+            }
+        }
+
+        @media print {
+            .container {
+                page-break-after: always;
+                box-shadow: none;
+                margin: 0;
+                padding: 1rem;
+                border-radius: 0;
+            }
+
+            header {
+                background: #0077cc !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+
+        ol.roman {
+            counter-reset: item;
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0.55rem 0;
+        }
+
+        ol.roman > li {
+            counter-increment: item;
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.35rem;
+        }
+
+        ol.roman > li::before {
+            content: counter(item, lower-roman) ") ";
+            position: absolute;
+            left: 0;
+            color: #0077cc;
+            font-weight: bold;
+            width: 1.4rem;
+            text-align: left;
+            font-size: 0.94em;
+            top: 0;
+        }
+
+        ol.roman ol {
+            counter-reset: subitem;
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 0.3rem;
+        }
+
+        ol.roman ol > li {
+            counter-increment: subitem;
+            position: relative;
+            padding-left: 1.7rem;
+            margin-bottom: 0.25rem;
+        }
+
+        ol.roman ol > li::before {
+            content: "(" counter(subitem, lower-alpha) ") ";
+            position: absolute;
+            left: 0;
+            color: #0077cc;
+            font-weight: bold;
+            width: 1.5rem;
+            font-size: 0.92em;
+        }
+
+        ol.roman li > ul {
+            margin: 0.35rem 0 0.5rem 1.4rem;
+            padding-left: 0;
+        }
+
+        @media (max-width: 768px) {
+            ol.roman > li {
+                padding-left: 1.5rem;
+            }
+
+            ol.roman > li::before {
+                width: 1.3rem;
+            }
+
+            ol.roman ol > li {
+                padding-left: 1.6rem;
+            }
+
+            ol.roman ol > li::before {
+                width: 1.4rem;
+            }
+
+            ol.roman li > ul {
+                margin-left: 1rem;
+            }
+        }
+
+        .indent-block {
+            margin-left: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .indent-block {
+                margin-left: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .indent-block {
+                margin-left: 0.8rem;
+            }
+        }
+
+        img {
+            display: block;
+            max-width: 58%;
+            height: auto;
+            max-height: 270px;
+            object-fit: contain;
+            margin: 1rem auto;
+            border-radius: 6px;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+            border: 1px solid #ddd;
+        }
+
+        img:hover {
+            transform: scale(1.04);
+        }
+
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(6px);
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #lightbox img {
+            max-width: 88%;
+            max-height: 88%;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+            transform: scale(0.85);
+            transition: transform 0.3s ease;
+            cursor: zoom-out;
+        }
+
+        #lightbox.active img {
+            transform: scale(1);
+        }
+
+        #image-tip {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 119, 204, 0.96);
+            color: #fff;
+            padding: 0.7rem 1.1rem;
+            border-radius: 6px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+            white-space: nowrap;
+        }
+
+        #image-tip.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 480px) {
+            #image-tip {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ8GK8VNS9"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -308,1013 +346,211 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8311353174841359"
      crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg glass-navbar">
-    <a class="navbar-brand" href="#">4-1 Semester</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-      <div class="navbar-nav">
-        <!-- Home is a simple '#' anchor; clicking it will show home content -->
-        <a class="nav-item nav-link active" href="#" id="navHome">Home</a>
-        <!-- Subjects uses #subjects but we intercept clicks via JS to show the topics area -->
-        <a class="nav-item nav-link" href="#syllabus">Syllabus</a>
-        <a class="nav-item nav-link" href="#subjects" id="navSubjects">Notes</a>
-        <a class="nav-item nav-link" href="#materials">Materials</a>
-        <a class="nav-item nav-link" href="#questions">Questions</a>
-      </div>
+
+    <header>
+        UHV-2 Unit-01
+    </header>
+
+    <div class="container">
+        <h2>1. Purpose & Motivation for the Course / Recapitulation of UHV-I</h2>
+        <h3>What is the purpose and motivation for value education?</h3>
+        <ul>
+            <li>Holistic Perspective: Develops a comprehensive view based on self-exploration of self, family, society, and nature.</li>
+            <li>Harmony Clarity: Builds understanding of harmony in human being, family, society, and existence.</li>
+            <li>Self-Reflection: Strengthens the ability to reflect on one's thoughts and actions.</li>
+            <li>Commitment to Act: Fosters courage and dedication to live ethically.</li>
+            <li>Addressing Crises: Motivates to resolve individual, societal, and environmental issues through value-based living.</li>
+        </ul>
+        <h3>Explain the need and importance of universal human values.</h3>
+        <ul>
+            <li>Shape Life: Essential to guide behavior and decision-making in society.</li>
+            <li>Understand Needs: Helps visualize goals and direct fulfillment.</li>
+            <li>Remove Confusions: Eliminates contradictions and utilizes technology rightly.</li>
+            <li>Build Bonds: Promotes humanity, respect, and positive relationships.</li>
+            <li>Overcome Negativity: Counters violence, disorders, and lack of unity.</li>
+        </ul>
+        <h3>Describe the factors that influence self-discipline.</h3>
+        <ul>
+            <li>Stress Levels: High stress reduces ability to control impulses.</li>
+            <li>Mental Health: Issues like anxiety affect self-regulation.</li>
+            <li>Peer Pressure: Social influences can hinder or support discipline.</li>
+            <li>Guidance Structure: Lack of proper guidance leads to poor control.</li>
+            <li>Family Environment: Upbringing and intelligence play key roles.</li>
+        </ul>
     </div>
-  </nav>
-  <main class="container-fluid">
-    <!-- HOME SECTION (default visible) -->
-    <section id="homeSection" class="page-card" aria-label="Home section">
-      <div style="width:100%; text-align:center;">
-        <div id="examMessage" class="alert alert-info text-center font-weight-bold" role="alert">
-          <div class="marquee-container">
-            <span class="marquee-text">🎓 All The Best for 4-1 Semester Exam! 📚</span>
-          </div>
-        </div>
-        <!-- optionally add a short line or instruction -->
-    
-      <!-- inside #homeSection -->
-<a id="btnNotes" class="btn btn-outline-secondary sub-button" href="#" role="button" aria-controls="topics">Click here for Notes</a>
-<div class="d-flex justify-content-center">
-  <div class="table-responsive" style="width: 100%; max-width: 500px;">
-    <table class="table table-bordered text-center mb-0">
-      <thead class="thead-light">
-        <tr>
-          <th>Date</th>
-          <th>Subject</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>17-11-2025</td><td>UHV</td></tr>
-        <tr><td>19-11-2025</td><td>CC</td></tr>
-        <tr><td>24-11-2025</td><td>WNS</td></tr>
-        <tr><td>26-11-2025</td><td>API&amp;M</td></tr>
-        <tr><td>28-11-2025</td><td>SCT</td></tr>
-        <tr><td>03-12-2025</td><td>DLT</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-      </div>
-    </section>
-    <!-- TOPICS AREA (hidden by default) -->
-    <div id="topicsArea" class="hidden" aria-hidden="true">
-      <!-- SUBJECT 1 -->
-      <section id="topics" class="page-card" aria-label="Topics section">
-        <div class="d-flex flex-column">
-          <div class="topic-row w-100 mb-3">
-            <div class="topic-label">Subject-1 :</div>
-            <button class="topic-btn" aria-expanded="false" data-toggle-sub="#cc-subtopics">Cloud Computing</button>
-          </div>
-          <div id="cc-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-UNIT-01/">Unit - 01</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-02/">Unit - 02</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-03/">Unit - 03</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/CC-Unit-04/">Unit - 04</a>
-          </div>
-        </div>
-      </section>
-      <!-- SUBJECT 2 -->
-      <section class="page-card" aria-label="Topics list">
-        <div class="d-flex flex-column">
-          <div class="topic-row w-100 mb-3">
-            <div class="topic-label">Subject-2 :</div>
-            <button class="topic-btn" data-toggle-sub="#wns-subtopics" aria-expanded="false">Wireless Network
-              Security</button>
-          </div>
-          <div id="wns-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-01/">Unit - 01</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-02/">Unit - 02</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-03/">Unit - 03</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/WNS-Unit-04/">Unit - 04</a>
-          </div>
-        </div>
-      </section>
-      <!-- SUBJECT 3 -->
-      <section class="page-card">
-        <div class="d-flex flex-column">
-          <div class="topic-row w-100 mb-3">
-            <div class="topic-label">Subject-3 :</div>
-            <button class="topic-btn" data-toggle-sub="#sct-subtopics" aria-expanded="false">Secure Coding
-              Techniques</button>
-          </div>
-          <div id="sct-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-01/">Unit - 01</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-02/">Unit - 02</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-03/">Unit - 03</a>
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/SCT-Unit-04/">Unit - 04</a>
-          </div>
-        </div>
-      </section>
-      <!-- SUBJECT 4 -->
-      <section class="page-card">
-        <div class="d-flex flex-column">
-          <div class="topic-row w-100 mb-3">
-            <div class="topic-label">Subject-4 :</div>
-            <button class="topic-btn" data-toggle-sub="#apim-subtopics" aria-expanded="false">API & M</button>
-          </div>
-          <div id="apim-subtopics" class="subtopics hidden" role="region" aria-hidden="true">
-            <a class="btn btn-outline-secondary sub-button" href="https://shyam044.github.io/API-M-Unit-01/">Unit -
-              01</a>
-          </div>
-        </div>
-      </section>
+
+    <header>
+        UHV-2 Unit-01
+    </header>
+
+    <div class="container">
+        <h2>2. Self-Exploration — Meaning, Content, Process / Natural Acceptance / Experiential Validation</h2>
+        <h3>What do you mean by self-exploration?</h3>
+        <ul>
+            <li>Personal Discovery: Process of understanding thoughts, feelings, and motivations.</li>
+            <li>Root Causes: Examining why one behaves in certain ways.</li>
+            <li>Growth Tool: Leads to self-awareness and personal development.</li>
+            <li>Ongoing Journey: Continuous reflection for better life choices.</li>
+            <li>Inner Harmony: Aligns actions with true self for happiness.</li>
+        </ul>
+        <h3>Explain the process of self-exploration.</h3>
+        <ul>
+            <li>Assessment: Take inventories to identify strengths and weaknesses.</li>
+            <li>Reflection: Journal thoughts and experiences regularly.</li>
+            <li>Mindfulness: Practice meditation to observe emotions.</li>
+            <li>Seek Feedback: Get insights from trusted others.</li>
+            <li>Track Progress: Reflect on growth and adjust focus.</li>
+        </ul>
+        <h3>Discuss about natural acceptance and experiential validation.</h3>
+        <ul>
+            <li>Natural Acceptance: Unconditional embrace of self and environment.</li>
+            <li>Experiential Validation: Learning through direct personal experiences.</li>
+            <li>Self-Exploration Tools: Contribute to awareness and prosperity.</li>
+            <li>Reflection Practice: Engage in self-reflection for validation.</li>
+            <li>Ongoing Process: Continuously seek new experiences for growth.</li>
+        </ul>
+        <h3>What do you mean by MBTI? Explain its process.</h3>
+        <ul>
+            <li>Personality Framework: Myers-Briggs Type Indicator categorizes personalities into 16 types.</li>
+            <li>Self-Report Tool: Individuals answer questions on preferences.</li>
+            <li>Four Dichotomies: Based on E/I, S/N, T/F, J/P scales.</li>
+            <li>Understanding Insights: Helps perceive world and make decisions.</li>
+            <li>Application Areas: Used for self-awareness and career guidance.</li>
+        </ul>
     </div>
+
+    <header>
+        UHV-2 Unit-01
+    </header>
+
+    <div class="container">
+        <h2>3. Continuous Happiness & Prosperity — Basic Human Aspirations</h2>
+        <h3>What do you mean by continuous happiness? How is it possible?</h3>
+        <ul>
+            <li>Inner Harmony: State of liking and balance within oneself.</li>
+            <li>Right Understanding: Achieved through knowledge of self and relationships.</li>
+            <li>Prosperity Link: Connected to feeling of sufficient facilities.</li>
+            <li>Self-Exploration: Possible via acceptance and validation.</li>
+            <li>Ongoing State: Maintained by harmonious living.</li>
+        </ul>
+        <h3>Discuss the different basic human aspirations.</h3>
+        <ul>
+            <li>Happiness: Continuous state of inner harmony.</li>
+            <li>Prosperity: Feeling of having more than needed facilities.</li>
+            <li>Personal Growth: Developing skills and self-awareness.</li>
+            <li>Relationships: Fulfilling connections with others.</li>
+            <li>Success: Achieving goals in career and life.</li>
+        </ul>
+        <h3>How to understand happiness and prosperity?</h3>
+        <ul>
+            <li>Inner State: Happiness is harmony within self.</li>
+            <li>Material Aspect: Prosperity is abundance in facilities.</li>
+            <li>Aspirations Base: Core drives for human efforts.</li>
+            <li>Critical Appraisal: Evaluate current scenario critically.</li>
+            <li>Harmony Levels: Understand through living in balance.</li>
+        </ul>
+        <h3>What are the methods to fulfil human aspirations?</h3>
+        <ul>
+            <li>Right Understanding: Gain knowledge for correct priorities.</li>
+            <li>Relationships: Build harmonious connections with others.</li>
+            <li>Physical Facilities: Ensure sufficient material needs.</li>
+            <li>Harmony Living: Practice at all levels for continuity.</li>
+            <li>Self-Reflection: Use exploration for fulfillment.</li>
+        </ul>
     </div>
-  </main>
- <!-- MATERIALS AREA (hidden by default) -->
-<div id="materialsArea" class="hidden" aria-hidden="true">
-  <section class="page-card" aria-label="Materials section">
-    <h3 class="text-center mb-4" style="color: #0a5f74;">📘 Study Materials</h3>
-    <!-- Sample Subject Block: Cloud Computing -->
-    <div class="material-block">
-      <h5 class="material-title">Cloud Computing</h5>
-      <div class="material-links">
-        <!-- Use data-pdf for files you want to open in the viewer -->
-        <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="Dr.GN_ CSE R20_ CC UNIT-I.pdf">Unit 01</a>
-        <!-- External drive links will still open in new tab (leave as-is or remove target) -->
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="Dr.GN_ CSE R20 CC UNIT-II.pdf">Unit 02</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="Dr.GN_CSE R20 CC UNIT-III.pdf">Unit 03</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="Dr.GN_ CSE R20 CC UNIT-IV.pdf">Unit 04</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="JNTUK 4-1 CSE R20 CC UNIT-V.pdf">Unit 05</a>
-      </div>
+
+    <header>
+        UHV-2 Unit-01
+    </header>
+
+    <div class="container">
+        <h2>4. Right Understanding, Relationship & Physical Facility — Requirements for Fulfilment of Aspirations</h2>
+        <h3>Discuss about different types of personality traits.</h3>
+        <ul>
+            <li>Openness: Curiosity and creativity in experiences.</li>
+            <li>Conscientiousness: Organization and dependability.</li>
+            <li>Extraversion: Sociability and assertiveness.</li>
+            <li>Agreeableness: Compassion and cooperation.</li>
+            <li>Neuroticism: Emotional stability and anxiety levels.</li>
+        </ul>
+        <h3>Describe the different types of personality indicators.</h3>
+        <ul>
+            <li>MBTI: 16 types based on preferences.</li>
+            <li>Big Five: Five traits like openness.</li>
+            <li>Type A/B: Competitive vs relaxed.</li>
+            <li>Enneagram: Nine interconnected types.</li>
+            <li>DiSC: Dominance, influence, steadiness, compliance.</li>
+        </ul>
+        <h3>What do you mean by self-discipline? Discuss the steps?</h3>
+        <ul>
+            <li>Controlled Behavior: Ability to obey rules consistently.</li>
+            <li>Acceptance: Acknowledge need for discipline.</li>
+            <li>Willpower: Build mental strength to resist temptations.</li>
+            <li>Hard Work: Practice consistently to form habits.</li>
+            <li>Persistence: Maintain efforts despite challenges.</li>
+        </ul>
     </div>
-        <div class="material-block">
-      <h5 class="material-title">WNS</h5>
-      <div class="material-links">
-        <!-- Use data-pdf for files you want to open in the viewer -->
-        <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="WNS Unit 1.pdf">Unit 01</a>
-        <!-- External drive links will still open in new tab (leave as-is or remove target) -->
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="UNIT-II.pdf">Unit 02</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="WNS UNIT-3.pdf">Unit 03</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="WNS UNIT-4.pdf">Unit 04</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="WNS UNIT-5.pdf">Unit 05</a>
-      </div>
+
+    <header>
+        UHV-2 Unit-01
+    </header>
+
+    <div class="container">
+        <h2>5. Understanding Happiness & Prosperity Correctly — Critical Appraisal of the Current Scenario</h2>
+        <h3>Explain the content of a critical appraisal?</h3>
+        <ul>
+            <li>Trustworthiness: Assess reliability of research.</li>
+            <li>Validity: Examine internal consistency.</li>
+            <li>Relevance: Judge applicability to context.</li>
+            <li>Generalizability: Check if results apply broadly.</li>
+            <li>Systematic Review: Carefully evaluate methodology.</li>
+        </ul>
     </div>
-            <div class="material-block">
-      <h5 class="material-title">SCT</h5>
-      <div class="material-links">
-        <!-- Use data-pdf for files you want to open in the viewer -->
-        <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="SCT_UNIT-1.pdf">Unit 01</a>
-        <!-- External drive links will still open in new tab (leave as-is or remove target) -->
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="SCT_UNIT-2.pdf">Unit 02</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="SCT_UNIT-3.pdf">Unit 03</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="SCT_UNIT- 4.pdf">Unit 04</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="SCT_UNIT-5.pdf">Unit 05</a>
-      </div>
+
+    <header>
+        UHV-2 Unit-01
+    </header>
+
+    <div class="container">
+        <h2>6. Method to Fulfil Aspirations: Living in Harmony at Various Levels</h2>
+        <h3>Write about living harmony at various levels.</h3>
+        <ul>
+            <li>Individual Level: Achieve inner peace through self-understanding.</li>
+            <li>Family Level: Foster mutual respect and trust.</li>
+            <li>Society Level: Promote undivided and universal order.</li>
+            <li>Nature Level: Ensure recyclability and mutual fulfillment.</li>
+            <li>Existence Level: Recognize coexistence in space.</li>
+        </ul>
     </div>
-              <div class="material-block">
-      <h5 class="material-title">DLT</h5>
-      <div class="material-links">
-        <!-- Use data-pdf for files you want to open in the viewer -->
-        <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="UNIT-I DEEP LEARNING TECHNIQUES.pdf">Unit 01</a>
-        <!-- External drive links will still open in new tab (leave as-is or remove target) -->
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="DL UNIT 2 MATERIAL.pdf">Unit 02</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="DL UNIT 3 MATERIAL.pdf">Unit 03</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="JNTUK_R20_UNIT_IV_DEEP_LEARNING_TECHNIQUEs.pdf">Unit 04</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="JNTUK_R20_UNIT_V_DEEP_LEARNING_TECHNIQUES.pdf">Unit 05</a>
-      </div>
+
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="Enlarged view">
     </div>
-                  <div class="material-block">
-      <h5 class="material-title">APIM</h5>
-      <div class="material-links">
-        <!-- Use data-pdf for files you want to open in the viewer -->
-        <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="API&M UNIT1 JSVGK (1).pdf">Unit 01</a>
-        <!-- External drive links will still open in new tab (leave as-is or remove target) -->
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="API&M UNIT2 jsvgk (1).pdf">Unit 02</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="API&M UNIT3 jsvgk.pdf">Unit 03</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="API&M UNIT4 jsvgk.pdf">Unit 04</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="API&M UNIT5 jsvgk.pdf">Unit 05</a>
-      </div>
-    </div>
-                      <div class="material-block">
-      <h5 class="material-title">UHV-2</h5>
-      <div class="material-links">
-        <!-- Use data-pdf for files you want to open in the viewer -->
-        <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="UHV-1.pdf">Unit 01</a>
-        <!-- External drive links will still open in new tab (leave as-is or remove target) -->
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="UHV-2.pdf">Unit 02</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="UHV-3.pdf">Unit 03</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="UHV-4.pdf">Unit 04</a>
-     <a href="#" class="btn btn-sm btn-primary material-btn pdf-link"
-           data-pdf="UHV-5.pdf">Unit 05</a>
-      </div>
-    </div>
-    <!-- (other material blocks stay unchanged) -->
-<!-- PDF Viewer (hidden initially) -->
-<div id="pdfViewerWrapper" class="position-fixed top-0 start-0 w-100 h-100 bg-white d-none" style="z-index:1050;">
-  <div class="d-flex flex-column h-100">
-    <!-- Header with title + buttons -->
-    <div class="bg-primary text-white p-3 d-flex justify-content-between align-items-center">
-      <strong id="pdfTitle" class="text-truncate me-2">PDF Viewer</strong>
-      <div>
-        <button id="zoomInBtn" class="btn btn-sm btn-outline-light me-2">+</button>
-        <button id="zoomOutBtn" class="btn btn-sm btn-outline-light me-2">-</button>
-        <button id="downloadPdfBtn" class="btn btn-sm btn-outline-light me-2">Download</button>
-        <button id="closePdfBtn" class="btn btn-sm btn-outline-light">Close</button>
-      </div>
-    </div>
-    <!-- PDF container – responsive -->
-    <div class="flex-grow-1 position-relative overflow-auto">
-      <iframe id="pdfIframe" class="w-100 h-100 border-0" style="min-height:70vh;"></iframe>
-      <!-- PDF.js fallback (hidden until needed) -->
-      <div id="pdfCanvasContainer" class="d-none w-100 h-100 p-3 bg-light overflow-auto">
-        <canvas id="pdfCanvas" style="display: block; margin: 0 auto;"></canvas>
-        <div class="mt-2 text-center">
-          <button id="prevPage" class="btn btn-sm btn-secondary me-2">Prev</button>
-          <span id="pageInfo">Page <span id="pageNum">1</span> / <span id="pageCount">1</span></span>
-          <button id="nextPage" class="btn btn-sm btn-secondary ms-2">Next</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  </section>
-  <!-- SYLLABUS AREA (hidden by default) -->
-</div>
-<script>
-  // Delegated click listener for links that should open in the viewer
-  document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.pdf-link');
-    if (!btn) return;
-    e.preventDefault();
-    const pdfPath = btn.dataset.pdf; // data-pdf value
-    if (!pdfPath) return;
-    const wrapper = document.getElementById('pdfViewerWrapper');
-    const iframe = document.getElementById('pdfIframe');
-    const downloadBtn = document.getElementById('downloadPdfBtn');
-    // encodeURI handles spaces and special characters
-    const encoded = encodeURI(pdfPath);
-    iframe.src = encoded;
-    downloadBtn.onclick = () => {
-      // trigger download in new tab (works if file is accessible)
-      window.open(encoded, '_blank', 'noopener');
-    };
-    wrapper.style.display = 'block';
-    // smooth scroll to the viewer
-    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-  // Close button behavior
-  document.getElementById('closePdfBtn').addEventListener('click', function () {
-    const wrapper = document.getElementById('pdfViewerWrapper');
-    const iframe = document.getElementById('pdfIframe');
-    iframe.src = '';
-    wrapper.style.display = 'none';
-  });
-</script>
-    <!-- SYLLABUS AREA (hidden by default) -->
-  </div>
-  <!-- SYLLABUS AREA (hidden by default) -->
-  <div id="syllabusArea" class="hidden" aria-hidden="true">
-    <section class="page-card" aria-label="Syllabus section">
-      <h3 class="text-center mb-4" style="color: #0a5f74;">📚 Syllabus</h3>
-      <div class="material-block">
-        <h5 class="material-title">Cloud Computing — Units</h5>
-        <div class="material-links">
-          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit1')">Unit 01</button>
-          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit2')">Unit 02</button>
-          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit3')">Unit 03</button>
-          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit4')">Unit 04</button>
-          <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('cc-unit5')">Unit 05</button>
-        </div>
-        <!-- Unit Content Blocks -->
-        <div id="cc-unit1" class="unit-content hidden">
-          <p><strong>UNIT I:</strong> Systems Modeling, Clustering and Virtualization: Scalable Computing over the
-            Internet — The Age of Internet Computing, Scalable computing over the internet, Technologies for Network
-            Based Systems, System models for Distributed and Cloud Computing, Performance, Security and Energy
-            Efficiency.</p>
-        </div>
-        <div id="cc-unit2" class="unit-content hidden">
-          <p><strong>UNIT II:</strong> Virtual Machines and Virtualization of Clusters and Data Centers: Implementation
-            Levels of Virtualization, Virtualization Structures/ Tools and Mechanisms, Virtualization of CPU, Memory and
-            I/O Devices, Virtual Clusters and Resource Management, Virtualization for Data-Center Automation.</p>
-        </div>
-        <div id="cc-unit3" class="unit-content hidden">
-          <p><strong>UNIT III:</strong> Cloud Platform Architecture: Cloud Computing and Service Models, Public Cloud
-            Platforms, Service Oriented Architecture, Programming on Amazon AWS and Microsoft Azure.</p>
-        </div>
-        <div id="cc-unit4" class="unit-content hidden">
-          <p><strong>UNIT IV:</strong> Cloud Resource Management and Scheduling: Policies and Mechanisms for Resource
-            Management, Applications of Control Theory to Task Scheduling on a Cloud, Stability of a Two Level Resource
-            Allocation Architecture, Feedback Control Based on Dynamic Thresholds, Coordination of Specialized Autonomic
-            Performance Managers, Resource Bundling, Scheduling Algorithms for Computing Clouds — Fair Queuing, Start
-            Time Fair Queuing.</p>
-        </div>
-        <div id="cc-unit5" class="unit-content hidden">
-          <p><strong>UNIT V:</strong> Storage Systems: Evolution of storage technology, storage models, file systems and
-            database, distributed file systems, general parallel file systems, Google file system.</p>
-        </div>
-      </div>
-      <!-- Wireless Network Security — Units buttons -->
-<div class="material-block">
-  <h5 class="material-title">Wireless Network Security — Units</h5>
-  <div class="material-links">
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit1')">Unit 01</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit2')">Unit 02</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit3')">Unit 03</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit4')">Unit 04</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('wns-unit5')">Unit 05</button>
-  </div>
-  <!-- Unit content blocks (hidden by default) -->
-  <div id="wns-unit1" class="unit-content hidden">
-    <p><strong>UNIT I:</strong> Introduction to Wireless — History of wireless technologies and wireless security; state of wireless security industry; common 2001-era wireless threats such as uncontrolled terrain, communications jamming (DoS), data injection/modification, man-in-the-middle attacks, rogue clients/APs, and typical attacker equipment.</p>
-  </div>
-  <div id="wns-unit2" class="unit-content hidden">
-    <p><strong>UNIT II:</strong> Wireless security protocols & cryptography — OSI/Internet model overview; wireless LAN security protocols; cryptography basics; SSL/TLS and SSH (including MITM cautions), WTLS, WEP, 802.1x, and IPsec.</p>
-  </div>
-  <div id="wns-unit3" class="unit-content hidden">
-    <p><strong>UNIT III:</strong> Security considerations for wireless devices — device security issues (physical security, information leakage), application security and detailed device analysis (laptops, PDAs); wireless infrastructure; introduction to cellular networks (FDMA, TDMA, CDMA), spread-spectrum primer, PDC, and associated security threats.</p>
-  </div>
-  <div id="wns-unit4" class="unit-content hidden">
-    <p><strong>UNIT IV:</strong> Wireless data networks — CDPD (architecture and security), Mobitex (architecture/security), gateways and security models; wireless standards & technologies overview (infrared, RF, spread spectrum, OFDM) and standards bodies (IEEE 802.*, ETSI), HomeRF, UWB and future trends.</p>
-  </div>
-  <div id="wns-unit5" class="unit-content hidden">
-    <p><strong>UNIT V:</strong> Wireless deployment strategies — implementing WLANs with security in mind, common wireless applications; designs for enterprise campus, IST deployments, retail/manufacturing and SOHO — security considerations and recommended deployment patterns.</p>
-  </div>
-</div>
- 
-<div class="material-block">
-  <h5 class="material-title">Secure Coding Techniques — Units</h5>
-  <div class="material-links">
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit1')">Unit 01</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit2')">Unit 02</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit3')">Unit 03</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit4')">Unit 04</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('sct-unit5')">Unit 05</button>
-  </div>
-  <div id="sct-unit1" class="unit-content hidden">
-    <p><strong>UNIT I:</strong> Network and Information security Fundamentals: Network Basics, Network Components, Network
-    Types, Network Communication Types, Introduction to Networking Models, Cyber Security Objectives
-    and Services, Other Terms of Cyber Security, Myths Around Cyber Security, Myths Around Cyber
-    Security, Recent Cyber Attacks, Generic Conclusion about Attacks, Why and What is Cyber Security,
-    Categories of Attack</p>
-  </div>
-  <div id="sct-unit2" class="unit-content hidden">
-    <p><strong>UNIT II:</strong> Introduction to Cyber security: Introduction to OWASP Top 10, A1 Injection, A1 Injection Risks Root
-    Causes and its Mitigation, A1 Injection, A2 Broken Authentication and Session Management, A7 Cross
-    Site Scripting XSS,A3 Sensitive Data Exposure, A5 Broken Access Control, A4 XML External Entity
-    (XEE), A6 Security Misconfiguration, A7 Missing Function Level Access Control, A8 Cross Site Request
-    Forgery CSRF, A8 Insecure Deserialization, A9 Using Components With Known Vulnerabilities, A10
-    Unvalidated Redirects and Forwards, A10 Insufficient Logging and Monitoring, Secure Coding Practices,
-    Secure Design Principles, Threat Modeling, Microsoft SDL Tool</p>
-  </div>
-  <div id="sct-unit3" class="unit-content hidden">
-    <p><strong>UNIT III:</strong> Secure coding practices and OWASP Top 10: Declarative Security, Programmatic Security,
-    Concurrency, Configuration, Cryptography, Input and Output Sanitization, Error Handling, Input
-    Validation, Logging and auditing, Session Management, Exception Management, Safe APIs, Type Safety,
-    Memory Management, Tokenizing, Sandboxing, Static and dynamic testing, vulnerability scanning and
-    penetration testing</p>
-  </div>
-  <div id="sct-unit4" class="unit-content hidden">
-    <p><strong>UNIT IV:</strong> Secure coding practices in C/C++ and Java: Potential Software Risks in C/C++, Defensive coding,
-    Preventative Planning, Clean Code, Iterative Design, Assertions, Pre Post Conditions, Low level design
-    inspections, Unit Tests
-    Java- Managing Denial of Service, Securing Information, Data Integrity, Accessibility and Extensibility,
-    Securing Objects, Serialization Security</p>
-  </div>
-  <div id="sct-unit5" class="unit-content hidden">
-    <p><strong>UNIT V:</strong> Secure coding in Python: Interactive Python Scripting, Python Variables, Conditionals, Loops,
-    Functions, External Modules, File operations, Web requests</p>
-  </div>
-</div>
-<div class="material-block">
-  <h5 class="material-title">Deep Learning Techniques — Units</h5>
-  <div class="material-links">
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit1')">Unit 01</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit2')">Unit 02</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit3')">Unit 03</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit4')">Unit 04</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('dlt-unit5')">Unit 05</button>
-  </div>
-  <div id="dlt-unit1" class="unit-content hidden">
-    <p><strong>UNIT I:</strong> Fundamentals of Deep Learning: Artificial Intelligence, History of Machine learning: Probabilistic
-    Modeling, Early Neural Networks, Kernel Methods, Decision Trees, Random forests and Gradient
-    Boosting Machines, Fundamentals of Machine Learning: Four Branches of Machine Learning,
-    Evaluating Machine learning Models, Overfitting and Underfitting. [Text Book 2]</p>
-  </div>
-  <div id="dlt-unit2" class="unit-content hidden">
-    <p><strong>UNIT II:</strong> Introducing Deep Learning: Biological and Machine Vision, Human and Machine Language,
-    Artificial Neural Networks, Training Deep Networks, Improving Deep Networks. [Text Book3]</p>
-  </div>
-  <div id="dlt-unit3" class="unit-content hidden">
-    <p><strong>UNIT III:</strong> Neural Networks: Anatomy of Neural Network, Introduction to Keras: Keras, TensorFlow,
-    Theano and CNTK, Setting up Deep Learning Workstation, Classifying Movie Reviews: Binary
-    Classification, Classifying newswires: Multiclass Classification. [Text Book 2]</p>
-  </div>
-  <div id="dlt-unit4" class="unit-content hidden">
-    <p><strong>UNIT IV:</strong> Convolutional Neural Networks: Nerual Network and Representation Learing, Convolutional Layers,
-    Multichannel Convolution Operation, Recurrent Neural Networks: Introduction to RNN, RNN Code,
-    PyTorch Tensors: Deep Learning with PyTorch, CNN in PyTorch. [Text Book 3]</p>
-  </div>
-  <div id="dlt-unit5" class="unit-content hidden">
-    <p><strong>UNIT V:</strong> Interactive Applications of Deep Learning: Machine Vision, Natural Language processing, Generative
-    Adversial Networks, Deep Reinforcement Learning. [Text Book 1]
-    Deep Learning Research: Autoencoders, Deep Generative Models: Boltzmann Machines Restricted
-    Boltzmann Machines, Deep Belief Networks. [Text Book 1]</p>
-  </div>
-</div>
-<div class="material-block">
-  <h5 class="material-title">API & M — Units</h5>
-  <div class="material-links">
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit1')">Unit 01</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit2')">Unit 02</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit3')">Unit 03</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit4')">Unit 04</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('apim-unit5')">Unit 05</button>
-  </div>
-  <div id="apim-unit1" class="unit-content hidden">
-    <p><strong>UNIT I:</strong> Spring 5 Basics : Why Spring, What is Spring Framework, Spring Framework - Modules, Configuring
-    IoC container using Java-based configuration, Introduction To Dependency Injection, Constructor
-    Injection, Setter Injection, What is AutoScanning</p>
-  </div>
-  <div id="apim-unit2" class="unit-content hidden">
-    <p><strong>UNIT II:</strong> Spring Boot: Creating a Spring Boot Application, Spring Boot Application Annotation, What is
-    Autowiring , Scope of a bean, Logger, Introduction to Spring AOP, Implementing AOP advices, Best
-    Practices : Spring Boot Application</p>
-  </div>
-  <div id="apim-unit3" class="unit-content hidden">
-    <p><strong>UNIT III:</strong> Spring Data JPA with Boot: Limitations of JDBC API, Why Spring Data JPA, Spring Data JPA with
-    Spring Boot, Spring Data JPA Configuration, Pagination and Sorting, Query Approaches, Named Queries
-    and Query, Why Spring Transaction, Spring Declarative Transaction, Update Operation in Spring Data
-    JPA, Custom Repository Implementation, Best Practices - Spring Data JPA</p>
-  </div>
-  <div id="apim-unit4" class="unit-content hidden">
-    <p><strong>UNIT IV:</strong> Web Services: Why Web services, SOA - Service Oriented Architecture, What are Web Services, Types
-    of Web Services, SOAP based Web Services, RESTful Web Services, How to create RESTful Services</p>
-  </div>
-  <div id="apim-unit5" class="unit-content hidden">
-    <p><strong>UNIT V:</strong> Spring REST: Spring REST - An Introduction, Creating a Spring REST Controller, @RequestBody and
-    ResponseEntity, Parameter Injection, Usage of @PathVariable, @RequestParam and @MatrixVariable,
-    Exception Handling, Data Validation, Creating a REST Client, Versioning a Spring REST endpoint,
-    Enabling CORS in Spring REST, Securing Spring REST endpoints</p>
-  </div>
-</div>
-<div class="material-block">
-  <h5 class="material-title">Universal Human Values (UHV2) — Units</h5>
-  <div class="material-links">
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit1')">Unit 01</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit2')">Unit 02</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit3')">Unit 03</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit4')">Unit 04</button>
-    <button class="btn btn-sm btn-success material-btn" onclick="showUnitContent('uhv-unit5')">Unit 05</button>
-  </div>
-  <div id="uhv-unit1" class="unit-content hidden">
-    <p><strong>UNIT I:</strong> Objective: The objective of the course is four fold: 1. Development of a holistic perspective based on self-exploration about themselves (human
-    being),family, society and nature/existence. 2. Understanding (or developing clarity) of the harmony in the human being, family, society and
-    nature/existence 3. Strengthening of self-reflection. 4. Development of commitment and courage to act.
-    Course Topics: The course has 28 lectures and 14 practice sessions in 5 modules: Module 1: Course Introduction - Need, Basic Guidelines, Content and Process for Value Education
-    1. Purpose and motivation for the course, recapitulation from Universal Human Values-I
-    2. Self-Exploration–what is it? - Its content and process; ‘Natural Acceptance’ and Experiential
-    Validation- as the process for self-exploration
-    3. Continuous Happiness and Prosperity- A look at basic Human Aspirations
-    4. Right understanding, Relationship and Physical Facility- the basic requirements for fulfilment of
-    aspirations of every human being with their correct priority
-    5. Understanding Happiness and Prosperity correctly- A critical appraisal of the current scenario
-    6. Method to fulfil the above human aspirations: understanding and living in harmony at various levels.</p>
-  </div>
-  <div id="uhv-unit2" class="unit-content hidden">
-    <p><strong>UNIT II:</strong> Module 2: Understanding Harmony in the Human Being - Harmony in Myself!
-    4. Understanding human being as a co-existence of the sentient ‘I’ and the material ‘Body’
-    5. Understanding the needs of Self (‘I’) and ‘Body’ - happiness and physical facility
-    6. Understanding the Body as an instrument of ‘I’ (I being the doer, seer and enjoyer)
-    7. Understanding the characteristics and activities of ‘I’ and harmony in ‘I’
-    8. Understanding the harmony of I with the Body: Sanyam and Health; correct appraisal of
-    Physical needs, meaning of Prosperity in detail
-    9. Programs to ensureSanyam and Health. Include practice sessions to discuss the role others have played in making material goods available to me. Identifying from one’s own life. Differentiate between prosperity and accumulation. Discuss program for ensuring health vs dealing with disease</p>
-  </div>
-  <div id="uhv-unit3" class="unit-content hidden">
-    <p><strong>UNIT III:</strong> Module 3: Understanding Harmony in the Family and Society- Harmony in Human-Human
-    Relationship 10. Understanding values in human-human relationship; meaning of Justice (nine universal values in
-    relationships) and program for its fulfilment to ensure mutual happiness; Trust and Respect as the
-    foundational values of relationship 11. Understanding the meaning of Trust; Difference between intention and competence
-    12. Understanding the meaning of Respect, Difference between respect and differentiation; the other
-    salient values in relationship 13. Understanding the harmony in the society (society being an extension of family): Resolution,
-    Prosperity, fearlessness (trust) and co-existence as comprehensive Human Goals 14. Visualizing a universal harmonious order in society- Undivided Society, Universal Order- from
-    family to world family. Include practice sessions to reflect on relationships in family, hostel and institute as extended family, real life examples, teacher-student relationship, goal of education etc. Gratitude as a universal value in relationships. Discuss with scenarios. Elicit examples from students’ lives</p>
-  </div>
-  <div id="uhv-unit4" class="unit-content hidden">
-    <p><strong>UNIT IV:</strong> Module 4: Understanding Harmony in the Nature and Existence - Whole existence as Coexistence
-    18. Understanding the harmony in the Nature 19. Interconnectedness and mutual fulfilment among the four orders of nature- recyclability and self
-    regulation in nature 20. Understanding Existence as Co-existence of mutually interacting units in all-pervasive space
-    21. Holistic perception of harmony at all levels of existence. Include practice sessions to discuss human being as cause of imbalance in nature (film “Home” can be
-    used), pollution, depletion of resources and role of technology etc.</p>
-  </div>
-  <div id="uhv-unit5" class="unit-content hidden">
-    <p><strong>UNIT V:</strong> Module 5: Implications of the above Holistic Understanding of Harmony on Professional Ethics
-    22. Natural acceptance of human values 23. Definitiveness of Ethical Human Conduct 24. Basis for Humanistic Education, Humanistic Constitution and Humanistic Universal Order
-    25. Competence in professional ethics: a. Ability to utilize the professional competence for augmenting
-    universal human order b. Ability to identify the scope and characteristics of people- friendly and eco
-    friendly production systems, c. Ability to identify and develop appropriate technologies and management
-    patterns for above production systems. 26. Case studies of typical holistic technologies, management models and production systems
-    27. Strategy for transition from the present state to Universal Human Order: a. At the level of individual:
-    as socially and ecologically responsible engineers, technologists and managers b. At the level of society:
-    as mutually enriching institutions and organizations 28. Sum up. Include practice Exercises and Case Studies will be taken up in Practice (tutorial) Sessions eg. To discuss the conduct as an engineer or scientist etc.</p>
-  </div>
-</div>
-    </section>
-  </div>
-<!-- QUESTIONS AREA (hidden by default) -->
-<div id="questionsArea" class="hidden" aria-hidden="true">
-  <section class="page-card" aria-label="Questions section">
-    <h3 class="text-center mb-4" style="color: #0a5f74;">❓ Questions</h3>
-    <div class="questions-grid">
-            <a class="btn btn-outline-secondary sub-button" data-pdf="CLOUD-COMPUTING-JAN-2024 (1).pdf">Cloud Computing</a>
-            <a class="btn btn-outline-secondary sub-button" data-pdf="WNS - Previous Year Question Papers.GMB.pdf">Wireless Network Security</a>
-            <a class="btn btn-outline-secondary sub-button" data-pdf="SECURE CODING TECHNIQUES.pdf">Secure Coding Techniques</a>
-            <a class="btn btn-outline-secondary sub-button" data-pdf="DEEP-LEARNING-TECHNIQUES-JAN-2024 (1).pdf">Deep Learning Techniques</a>
-            <a class="btn btn-outline-secondary sub-button" data-pdf="API&M pyqs (1).pdf">API&M</a>
-             <a class="btn btn-outline-secondary sub-button" data-pdf="UHV PYQS.pdf">UHV-2</a>
-    </div>
-    <!-- placeholder content region where you can inject actual questions (you will edit this in VS Code) -->
-    <div id="questionsContent" class="hidden" aria-live="polite"></div>
-  </section>
-</div>
-<script>
-  // === FIXED: Handle only .sub-button with data-pdf (Questions section PDFs) ===
-  document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.sub-button[data-pdf]');
-    if (!btn) return;
-    e.preventDefault(); // Only prevent default for PDF buttons
-    const pdfFile = btn.getAttribute('data-pdf');
-    if (pdfFile) {
-      window.open(pdfFile, '_blank');
-    } else {
-      alert("PDF not found!");
-    }
-  });
-  // === Keep your existing PDF viewer (iframe) logic (unchanged) ===
-  document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.pdf-link');
-    if (!btn) return;
-    e.preventDefault();
-    const pdfPath = btn.dataset.pdf;
-    if (!pdfPath) return;
-    const wrapper = document.getElementById('pdfViewerWrapper');
-    const iframe = document.getElementById('pdfViewer');
-    const downloadBtn = document.getElementById('downloadPdfBtn');
-    const encoded = encodeURI(pdfPath);
-    iframe.src = encoded;
-    downloadBtn.onclick = () => {
-      window.open(encoded, '_blank', 'noopener');
-    };
-    wrapper.style.display = 'block';
-    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-  // Close PDF viewer
-  document.getElementById('closePdfBtn').addEventListener('click', function () {
-    const wrapper = document.getElementById('pdfViewerWrapper');
-    const iframe = document.getElementById('pdfViewer');
-    iframe.src = '';
-    wrapper.style.display = 'none';
-  });
-</script>
-  <!-- Bootstrap JS + jQuery + Popper -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  // main sections (may be null if not present)
-  const homeSection = document.getElementById('homeSection');
-  const topicsArea = document.getElementById('topicsArea');
-  const materialsArea = document.getElementById('materialsArea');
-  const syllabusArea = document.getElementById('syllabusArea');
-  const questionsArea = document.getElementById('questionsArea'); // <-- new
-  // nav items
-  const navHome = document.getElementById('navHome');
-  const navSubjects = document.getElementById('navSubjects');
-  const navMaterials = document.querySelector('[href="#materials"]');
-  const navSyllabus = document.querySelector('[href="#syllabus"]');
-  const navQuestions = document.querySelector('[href="#questions"]'); // <-- new
-  // Subject toggle buttons (expand/collapse subtopics)
-  const toggles = document.querySelectorAll('[data-toggle-sub]');
-  toggles.forEach(button => {
-    const subSel = button.getAttribute('data-toggle-sub');
-    if (!subSel) return;
-    const section = document.querySelector(subSel);
-    if (!section) return;
-    button.setAttribute('aria-expanded', section.classList.contains('hidden') ? 'false' : 'true');
-    button.addEventListener('click', () => {
-      const currentlyHidden = section.classList.contains('hidden');
-      if (currentlyHidden) {
-        section.classList.remove('hidden');
-        section.classList.add('visible-block');
-        section.setAttribute('aria-hidden', 'false');
-        button.setAttribute('aria-expanded', 'true');
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        section.classList.remove('visible-block');
-        section.classList.add('hidden');
-        section.setAttribute('aria-hidden', 'true');
-        button.setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-  // utility: hide all main sections that exist
-  function hideAllMain() {
-    [homeSection, topicsArea, materialsArea, syllabusArea, questionsArea].forEach(sec => {
-      if (!sec) return;
-      sec.classList.remove('visible-block');
-      sec.classList.add('hidden');
-      sec.setAttribute('aria-hidden', 'true');
-    });
-    // remove 'active' from nav links if they exist
-    [navHome, navSubjects, navMaterials, navSyllabus, navQuestions].forEach(nav => {
-      if (nav) nav.classList.remove('active');
-    });
-  }
-  // utility: show a given section and mark corresponding nav active
-  function showSection(sectionEl, navEl) {
-    hideAllMain();
-    if (!sectionEl) return;
-    sectionEl.classList.remove('hidden');
-    sectionEl.classList.add('visible-block');
-    sectionEl.setAttribute('aria-hidden', 'false');
-    if (navEl) navEl.classList.add('active');
-    sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  // initial view
-  showSection(homeSection, navHome);
-  // nav click handlers (guard existence)
-  if (navHome) navHome.addEventListener('click', function (e) {
-    e.preventDefault();
-    showSection(homeSection, navHome);
-  });
-  if (navSubjects) navSubjects.addEventListener('click', function (e) {
-    e.preventDefault();
-    showSection(topicsArea, navSubjects);
-  });
-  if (navMaterials) navMaterials.addEventListener('click', function (e) {
-    e.preventDefault();
-    showSection(materialsArea, navMaterials);
-  });
-  if (navSyllabus) navSyllabus.addEventListener('click', function (e) {
-    e.preventDefault();
-    showSection(syllabusArea, navSyllabus);
-  });
-  // Questions nav handler (new)
-  if (navQuestions) navQuestions.addEventListener('click', function (e) {
-    e.preventDefault();
-    showSection(questionsArea, navQuestions);
-  });
-  // "Click here for Notes" on the Home card -> open Topics (same behavior as navbar)
-  const btnNotes = document.getElementById('btnNotes');
-  if (btnNotes) {
-    btnNotes.addEventListener('click', function (e) {
-      e.preventDefault();
-      showSection(topicsArea, navSubjects);
-      // if on mobile, collapse the navbar so user sees the content (optional)
-      if (window.innerWidth <= 991) {
-        $navCollapse.collapse('hide');
-        $toggler.attr('aria-expanded', 'false');
-      }
-    });
-  }
-  // support opening from URL hash
-  const hash = window.location.hash;
-  switch (hash) {
-    case '#subjects':
-      showSection(topicsArea, navSubjects);
-      break;
-    case '#materials':
-      showSection(materialsArea, navMaterials);
-      break;
-    case '#syllabus':
-      showSection(syllabusArea, navSyllabus);
-      break;
-    case '#questions': // <-- new
-      showSection(questionsArea, navQuestions);
-      break;
-    default:
-      showSection(homeSection, navHome);
-  }
-  // --- NEW: auto-open navbar on mobile (<= 991px) and keep behavior on resize ---
-  const $navCollapse = $('#navbarContent');
-  const $toggler = $('.navbar-toggler');
-  function updateNavbarForWidth() {
-    if (window.innerWidth <= 991) {
-      // Open the collapsed menu on mobile
-      if (!$navCollapse.hasClass('show')) {
-        $navCollapse.collapse('show'); // bootstrap collapse API
-        $toggler.attr('aria-expanded', 'true'); // accessibility state
-      }
-    } else {
-      // Ensure it's collapsed on larger screens
-      if ($navCollapse.hasClass('show')) {
-        $navCollapse.collapse('hide');
-        $toggler.attr('aria-expanded', 'false');
-      }
-    }
-  }
-  // Run on load
-  updateNavbarForWidth();
-  // Re-evaluate on resize (debounced small delay to avoid thrash)
-  let resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(updateNavbarForWidth, 120);
-  });
-  // When a nav link is clicked on mobile, collapse so user can see the selected section
-  $('#navbarContent .nav-link').on('click', function () {
-    if (window.innerWidth <= 991) {
-      $navCollapse.collapse('hide');
-      $toggler.attr('aria-expanded', 'false');
-    }
-  });
-}); // end DOMContentLoaded
-// keep this helper global if you call it from onclick attributes
-function showUnitContent(unitId) {
-  const allUnits = document.querySelectorAll('.unit-content');
-  allUnits.forEach(unit => unit.classList.add('hidden'));
-  const target = document.getElementById(unitId);
-  if (target) {
-    target.classList.remove('hidden');
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-/* ---------------------------
-   openQuestions(subject)
-   - fills #questionsContent with simple content
-   - shows the Questions section (it uses the same showSection helper)
-   - this must be global because HTML uses onclick="openQuestions(...)"
-   --------------------------- */
-function openQuestions(subject) {
-  // simple sample data; replace/extend this as you like
-  const sample = {
-    'Cloud Computing': [
-      'Explain virtualization and its types.',
-      'Compare IaaS, PaaS and SaaS with examples.',
-      'Describe resource scheduling algorithms in clouds.'
-    ],
-    'Wireless Network Security': [
-      'List common wireless threats and mitigation.',
-      'Explain WEP vulnerabilities and why WPA/WPA2 is better.'
-    ],
-    'Secure Coding Techniques': [
-      'Explain OWASP Top 10 and give examples for XSS and CSRF.',
-      'List defensive coding practices for input validation.'
-    ],
-    'Deep Learning Techniques': [
-      'Describe the backpropagation algorithm.',
-      'Explain the role of activation functions in neural nets.'
-    ],
-    'API & M': [
-      'What is Spring Boot and how does it simplify configuration?',
-      'Explain RESTful API design principles.'
-    ]
-  };
-  const questionsDiv = document.getElementById('questionsContent');
-  if (!questionsDiv) return;
-  // build HTML
-  const qList = sample[subject] || ['No prepared questions for this subject yet.'];
-  let html = `<h4 style="color:#063642; font-weight:700; margin-bottom:0.5rem;">${subject} — Questions</h4>`;
-  html += '<ol style="margin-top:0.5rem; padding-left:1.25rem;">';
-  qList.forEach(q => {
-    html += `<li style="margin-bottom:0.6rem;">${q}</li>`;
-  });
-  html += '</ol>';
-  html += `<p style="font-size:0.95rem; color:#0a5f74; margin-top:0.5rem;">(You can edit this content in VS Code.)</p>`;
-  questionsDiv.innerHTML = html;
-  // show the questionsArea (we can't call showSection directly because it's scoped inside DOMContentLoaded)
-  // replicate minimal showSection behaviour here:
-  const sections = [document.getElementById('homeSection'), document.getElementById('topicsArea'),
-                    document.getElementById('materialsArea'), document.getElementById('syllabusArea'),
-                    document.getElementById('questionsArea')];
-  sections.forEach(sec => {
-    if (!sec) return;
-    sec.classList.remove('visible-block');
-    sec.classList.add('hidden');
-    sec.setAttribute('aria-hidden', 'true');
-  });
-  const questionsArea = document.getElementById('questionsArea');
-  if (questionsArea) {
-    questionsArea.classList.remove('hidden');
-    questionsArea.classList.add('visible-block');
-    questionsArea.setAttribute('aria-hidden', 'false');
-    // mark nav link active if present
-    const navQuestions = document.querySelector('[href="#questions"]');
-    if (navQuestions) {
-      // clear other active classes
-      document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-      navQuestions.classList.add('active');
-    }
-    // ensure content region is visible
-    const content = document.getElementById('questionsContent');
-    if (content) content.classList.remove('hidden');
-    questionsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-</script>
-<!-- PDF.js (Mozilla) – CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs"></script>
-<script>
-/* ---------- PDF Viewer (improved for mobile) ---------- */
-let pdfDoc = null, pageNum = 1, pageRendering = false, pageNumPending = null, scale = 1.5, zoomStep = 0.25;
-const minScale = 0.5, maxScale = 3.0;
 
-function renderPage(num) {
-  pageRendering = true;
-  pdfDoc.getPage(num).then(page => {
-    const container = document.getElementById('pdfCanvasContainer');
-    const viewport = page.getViewport({ scale });
-    const canvas = document.getElementById('pdfCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-    canvas.style.width = '100%'; // Fit to container width for responsive
-    const renderContext = { canvasContext: ctx, viewport };
-    const renderTask = page.render(renderContext);
-    renderTask.promise.then(() => {
-      pageRendering = false;
-      if (pageNumPending !== null) {
-        renderPage(pageNumPending);
-        pageNumPending = null;
-      }
-    });
-  });
-  document.getElementById('pageNum').textContent = num;
-}
+    <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
 
-function queueRenderPage(num) {
-  if (pageRendering) pageNumPending = num;
-  else renderPage(num);
-}
+        document.querySelectorAll("img").forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add("active");
+            });
+        });
 
-function onPrevPage() {
-  if (pageNum <= 1) return;
-  pageNum--;
-  queueRenderPage(pageNum);
-}
+        lightbox.addEventListener("click", () => {
+            lightbox.classList.remove("active");
+        });
 
-function onNextPage() {
-  if (pageNum >= pdfDoc.numPages) return;
-  pageNum++;
-  queueRenderPage(pageNum);
-}
+        window.addEventListener("DOMContentLoaded", () => {
+            const tip = document.getElementById("image-tip");
+            tip.classList.add("show");
+            setTimeout(() => tip.classList.remove("show"), 5000);
+        });
+    </script>
 
-function zoomIn() {
-  scale = Math.min(maxScale, scale + zoomStep);
-  renderPage(pageNum);
-}
+</body>
 
-function zoomOut() {
-  scale = Math.max(minScale, scale - zoomStep);
-  renderPage(pageNum);
-}
-
-// Dynamic scale for mobile (fit to width)
-function updateScale() {
-  if (!pdfDoc) return;
-  pdfDoc.getPage(pageNum).then(page => {
-    const container = document.getElementById('pdfCanvasContainer');
-    const viewport = page.getViewport({ scale: 1 });
-    scale = (container.clientWidth / viewport.width) * 0.95; // 95% fit with margin
-    scale = Math.max(minScale, Math.min(maxScale, scale)); // Clamp
-    renderPage(pageNum);
-  });
-}
-
-/* ---- open PDF (called from .pdf-link clicks) ---- */
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.pdf-link');
-  if (!btn) return;
-  e.preventDefault();
-  const pdfPath = btn.dataset.pdf;
-  const title = btn.textContent.trim() || 'PDF Viewer';
-  if (!pdfPath) return alert('PDF path missing');
-  const wrapper = document.getElementById('pdfViewerWrapper');
-  const iframe = document.getElementById('pdfIframe');
-  const canvasContainer = document.getElementById('pdfCanvasContainer');
-  const downloadBtn = document.getElementById('downloadPdfBtn');
-  // Detect mobile or iOS
-  const isMobile = window.innerWidth <= 768 || /iPad|iPhone|iPod/.test(navigator.userAgent);
-  // Reset UI
-  document.getElementById('pdfTitle').textContent = title;
-  wrapper.classList.remove('d-none');
-  downloadBtn.onclick = () => window.open(pdfPath, '_blank');
-  if (!isMobile) {
-    // Desktop: Try iframe first
-    iframe.src = pdfPath + '#toolbar=0&navpanes=0&scrollbar=0&view=FitH'; // Improved params for fit
-    iframe.style.display = 'block';
-    canvasContainer.classList.add('d-none');
-    iframe.onload = () => {
-      // If loaded successfully, keep iframe
-    };
-    // Improved fallback: Check if PDF is displayed (timeout-based, as onerror may not trigger reliably)
-    setTimeout(() => {
-      if (iframe.contentDocument && iframe.contentDocument.body && iframe.contentDocument.body.childNodes.length === 0) {
-        usePdfJsFallback(pdfPath);
-      }
-    }, 1000); // Give time to load
-    iframe.onerror = () => usePdfJsFallback(pdfPath);
-  } else {
-    // Mobile: Directly use PDF.js for better control
-    usePdfJsFallback(pdfPath);
-  }
-  // Scroll to viewer
-  wrapper.scrollIntoView({ behavior: 'smooth' });
-});
-
-function usePdfJsFallback(pdfPath) {
-  const iframe = document.getElementById('pdfIframe');
-  const canvasContainer = document.getElementById('pdfCanvasContainer');
-  iframe.src = ''; // Clear iframe
-  iframe.style.display = 'none';
-  canvasContainer.classList.remove('d-none');
-  pdfjsLib.getDocument(pdfPath).promise.then(pdf => {
-    pdfDoc = pdf;
-    document.getElementById('pageCount').textContent = pdf.numPages;
-    updateScale(); // Initial fit
-  }).catch(err => {
-    console.error('PDF.js error:', err);
-    alert('Could not load PDF.');
-  });
-}
-
-// Close viewer
-document.getElementById('closePdfBtn').addEventListener('click', () => {
-  const wrapper = document.getElementById('pdfViewerWrapper');
-  const iframe = document.getElementById('pdfIframe');
-  iframe.src = '';
-  wrapper.classList.add('d-none');
-  // Reset PDF.js state
-  pdfDoc = null;
-  pageNum = 1;
-  scale = 1.5;
-});
-
-// PDF.js navigation
-document.getElementById('prevPage').addEventListener('click', onPrevPage);
-document.getElementById('nextPage').addEventListener('click', onNextPage);
-document.getElementById('zoomInBtn').addEventListener('click', zoomIn);
-document.getElementById('zoomOutBtn').addEventListener('click', zoomOut);
-
-// Re-render on resize (debounced)
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(updateScale, 150);
-});
-
-// Swipe for page change on mobile (simple touch detection)
-const canvasContainer = document.getElementById('pdfCanvasContainer');
-let touchStartX = 0;
-canvasContainer.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-canvasContainer.addEventListener('touchend', e => {
-  const touchEndX = e.changedTouches[0].screenX;
-  if (touchEndX < touchStartX - 50) onNextPage(); // Swipe left -> next
-  if (touchEndX > touchStartX + 50) onPrevPage(); // Swipe right -> prev
-});
-
-// Close on backdrop click
-document.getElementById('pdfViewerWrapper').addEventListener('click', e => {
-  if (e.target === document.getElementById('pdfViewerWrapper')) {
-    document.getElementById('closePdfBtn').click();
-  }
-});
-</script>
-      </body>
 </html>
