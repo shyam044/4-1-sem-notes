@@ -338,11 +338,7 @@
           </div>
         </div>
         <!-- optionally add a short line or instruction -->
-<div id="specialExamBlock" class="text-center mt-3">
-  <div id="specialExamText" class="badge badge-pill badge-warning p-3 font-weight-bold" style="font-size: 1.1rem; min-width: 280px; display: inline-block;">
-    Exam Closed
-  </div>
-</div>
+        
       <!-- inside #homeSection -->
              <section id="topics" class="page-card" aria-label="Topics section">
         <div class="d-flex flex-column">
@@ -1350,35 +1346,10 @@ document.getElementById('pdfViewerWrapper').addEventListener('click', e => {
   }
 });
 </script>
-<script>
-  // Special Exam - UHV-2 - Static Text Only
-  const SPECIAL_EXAM_LINK = 'https://shyam044.github.io/UHV-2-Special-Exam/';
-  const EXAM_TIME_IST = new Date('2025-11-16T20:00:00+05:30'); // 8:00 PM IST, Nov 16, 2025
 
-  function updateSpecialExam() {
-    const now = new Date();
-    const textEl = document.getElementById('specialExamText');
-    if (!textEl) return;
-
-    if (now >= EXAM_TIME_IST) {
-      textEl.innerHTML = `
-        <a href="${SPECIAL_EXAM_LINK}" target="_blank" 
-           style="color:white; text-decoration:none; font-weight:900;">
-          Exam Closed
-        </a>`;
-      textEl.className = 'badge badge-pill badge-success p-3 font-weight-bold';
-    } else {
-      textEl.textContent = 'UHV-2 Special Exam starts at 8:00 PM';
-      textEl.className = 'badge badge-pill badge-warning p-3 font-weight-bold';
-    }
-  }
-
-  // Update once on load, then every 10 seconds (no countdown)
-  updateSpecialExam();
-  setInterval(updateSpecialExam, 10000); // Check every 10 sec
-</script>
       </body>
 </html>
+
 
 
 
